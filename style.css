@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'ageorange'; /* this value can be anything you wish - it gets used in the class definition below */
+    src: url('Fonts/AGENTORANGE.TTF'); /* add the file path to your font here */
+  }
+
+  @font-face {
+    font-family: '1982'; /* this value can be anything you wish - it gets used in the class definition below */
+    src: url('Fonts/back-to-1982.regular.ttf'); /* add the file path to your font here */
+  }
+
+body{
+    position: relative;
+    background: radial-gradient(circle, white, turquoise);
+}
+
+.title{
+    position: absolute;
+    border: solid black;
+    border-width: 3px;
+    text-align: center;
+    width: 98vw;
+    height: 45vw;
+
+}
+
+.title-text{
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    width: 50%;
+    border: solid black;
+    align-items: center;
+    text-align: center;
+    animation: titleanimate 2s ease-in-out infinite;
+}
+
+.title-text > h1{
+    font-family: '1982';
+    font-size: 300%;
+    color: blue;
+    
+}
+
+.title-text > h2{
+    font-family: 'ageorange';
+    color: blue;
+}
+
+@keyframes titleanimate {
+    0%,100%
+    {
+        transform: translateY(-20px);
+    }
+    50%
+    {
+        transform: translateY(20px);
+    }
+}
