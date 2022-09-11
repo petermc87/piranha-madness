@@ -20,7 +20,7 @@ body{
     text-align: center;
     width: 98vw;
     height: 45vw;
-
+    z-index: 1;
 }
 
 .title-text{
@@ -55,4 +55,164 @@ body{
     {
         transform: translateY(20px);
     }
+}
+
+/* --------FISH STLYING------- */
+
+/* GOLDFISH */
+.fish{
+    width: 60px;
+    height: 33px;
+    background: radial-gradient(circle, #ffde4a, #fcac0f);
+    border-radius: 50%;
+    position: relative;
+    margin: 50px auto;
+}
+
+.fin{
+    width: 16px;
+    height: 13px;
+    background: linear-gradient(to right top, #ffae00, #ffde4a);
+    border-radius: 33px 0 13px 0;
+    position: absolute;
+    top: -8px;
+    left: 22px;
+    z-index: -1
+}
+
+.eye{
+    width: 5px;
+    height: 5px;
+    border-radius: 16.6px;
+    background: #000;
+    position: absolute;
+    top: 10px;
+    left: 8.3px;
+}
+
+.m{
+    width: 2px;
+    height: 2px;
+    border-radius: 16.66px;
+    background: #fff;
+    margin: 1px;
+}
+.mouth{
+    width: 5px;
+    border-bottom: 0.666px solid #d47100;
+    border-radius: 0 0 6.666px 6.666px;
+    position: absolute;
+    top: 18.33px;
+    left: 0px;
+}
+
+
+.g{
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 23.33px;
+    height: 23.33px;
+    border-radius: 16.66px;
+    border-right: 0.333px solid #ffde4a;
+    filter: drop-shadow(0.666px 0px 0.666px #d47100);
+}
+
+.t1{
+    width: 20px;
+    height: 23.33px;
+    background: linear-gradient(to right top, #ffae00, #ffae00,#ffae00, #ffde4a);
+    border-radius: 33.33px 0 26.666px 0;
+    position: absolute;
+    top: 0;
+    right: -11.66px;
+    z-index: -1;
+    animation: animal 2s infinite;
+    transform-origin: left bottom;
+
+}
+.t2{
+    width: 20px;
+    height: 23.33px;
+    background: linear-gradient(to right bottom, #ffae00, #ffae00,#ffae00, #ffde4a);
+    border-top-right-radius: 33.33px;
+    border-bottom-left-radius: 26.66px;
+    position: absolute;
+    bottom: 0;
+    right: -11.66px;
+    z-index: -1;
+    animation: animal_two 2s infinite;
+    transform-origin: left top;
+}
+
+@keyframes animal {
+    0%{
+        transform: rotateY(0deg);
+    }
+    50%{
+        transform: rotateY(30deg);
+    }
+    100%{
+        transform: rotateY(0deg);
+    }
+}
+
+@keyframes animal_two {
+    0%{
+        transform: rotateY(0deg);
+    }
+    50%{
+        transform: rotateY(30deg);
+    }
+    100%{
+        transform: rotateY(0deg);
+    }
+}
+
+/* RED SNAPPER */
+#red-snapper{
+    width: 60px;
+    height: 50px;
+    background: radial-gradient(circle, #fcac0f,#ff3c00);
+    border-radius: 50%;
+    position: relative;
+    margin: 50px auto;
+}
+
+#red-fin{
+    background: linear-gradient(to right top, #ff3c00, #fcac0f);
+}
+
+#red-gill{
+    border-right: 0.333px solid #fcac0f;
+    filter: drop-shadow(0.666px 0px 0.666px #ff3c00);
+}
+
+#red-tail{
+    background: linear-gradient(to right top, #ff3c00, #ff3c00,#ff3c00, #fcac0f);
+}
+
+
+/* KRILL */
+#krill{
+    width: 85px;
+    height: 30px;
+    background: radial-gradient(circle, #95f6f9,#009dff);
+    border-radius: 50%;
+    position: relative;
+    margin: 50px auto;
+}
+
+#krill-fin{
+    background: linear-gradient(to right top, #009dff, #95f6f9);
+    left: 35px;
+}
+
+#krill-gill{
+    border-right: 0.333px solid #95f6f9;
+    filter: drop-shadow(0.666px 0px 0.666px #009dff);
+}
+
+#krill-tail{
+    background: linear-gradient(to right top, #009dff, #009dff,#009dff, #95f6f9);
 }
