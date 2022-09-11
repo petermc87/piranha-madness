@@ -107,5 +107,5 @@ Eating will bring your health back up
 Option to have fish with different damage power 
 
 ## Wireframe Images
-
+![alt text](https://github.com/petermc87/project_1_piranha_madness/blob/main/images/Piranha%20Madness%20Wireframe_4.jpg)
 
