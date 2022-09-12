@@ -105,3 +105,21 @@ Optional to  move dynamically
 Eating will bring your health back up 
 
 Option to have fish with different damage power 
+
+## Wireframe Images
+
+* Wireframe for title page
+
+![alt text](https://github.com/petermc87/project_1_piranha_madness/blob/main/images/Piranha%20Madness%20Wireframe_1.jpg)
+
+* Wireframe for game page styling
+![alt text](https://github.com/petermc87/project_1_piranha_madness/blob/main/images/Piranha%20Madness%20Wireframe_2.jpg)
+
+
+* Wireframe for boss fight
+
+![alt text](https://github.com/petermc87/project_1_piranha_madness/blob/main/images/Piranha%20Madness%20Wireframe_3.jpg)
+
+* Wireframe for what happens when moving to next level
+
+![alt text](https://github.com/petermc87/project_1_piranha_madness/blob/main/images/Piranha%20Madness%20Wireframe_4.jpg)
