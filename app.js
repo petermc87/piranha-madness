@@ -21,8 +21,10 @@ const playerMouth = document.querySelector('.mouth-contact')
 // -------------CLASSES-------------//
 // ---------------------------------//
 
+
+
 // ---------------------------------//
-// -------------OBJECTS-------------//aa
+// -------------OBJECTS-------------//
 // ---------------------------------//
 
 // ---------------------------------//
@@ -45,6 +47,8 @@ const fishMoveRender = (fish, moveTime) => {
     fish.style = `top: ${Math.floor(Math.random()*70) + 1}vh;
     animation: fishmove ${moveTime}s linear infinite;`
 }
+
+
 
 
 // ---------------------------------//
@@ -85,14 +89,14 @@ window.addEventListener('keydown', (evt) => {
     }
 
     if (collisionCheck(krillSprite, playerMouth)) {
-            krillSprite.style = `display: none;`
-        }
+        krillSprite.style = `display: none;`
+    }
     else if (collisionCheck(redSnapper, playerMouth)) {
-            redSnapper.style = `display: none;`
-        }
+        redSnapper.style = `display: none;`
+    }
     else if (collisionCheck(goldFish, playerMouth)) {
-            goldFish.style = `display: none;`
-        }
+        goldFish.style = `display: none;`
+    }
     
 });
 
@@ -107,6 +111,19 @@ fishMoveRender(goldFish, 7)
 
 
 
+
+
+
+
+// if (collisionCheck(krillSprite, playerMouth)) {
+//     krillSprite.style = `display: none;`
+// }
+// else if (collisionCheck(redSnapper, playerMouth)) {
+//     redSnapper.style = `display: none;`
+// }
+// else if (collisionCheck(goldFish, playerMouth)) {
+//     goldFish.style = `display: none;`
+// }
 
 
 
