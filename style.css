@@ -74,6 +74,7 @@ body{
     border-radius: 50%;
     position: relative;
     margin: 50px auto;
+    left: 50vw;
 }
 
 .fin{
@@ -208,6 +209,7 @@ body{
     border-radius: 50%;
     position: relative;
     margin: 50px auto;
+    animation: fishmove 10s linear infinite;
 }
 
 #krill-fin{
@@ -237,15 +239,12 @@ body{
 
 /* PLAYER SPRITE*/
 .player-sprite{
-    position: relative;
+    position: absolute;
     border: solid blue;
     height: 12%;
     width:20%;
-    /* background-color: blue; */
     top: 0;
     left: 0;
-    /* transform: rotate(40deg); */
-    /* playerSprite.style = 'animation: sprite-animation 1s infinite;' */
 }
 
 .player-sprite > img{
@@ -277,3 +276,57 @@ body{
         transform: rotateY(0deg);
     }
 }
+
+
+@keyframes fishmove {
+    
+    0%
+    {
+        transform: translateX(0);
+        
+    }
+    /* 25%
+    {
+        
+        transform: translateY(-100px);
+    } */
+/*         
+    50%
+    {
+        transform: translateX(-1000px);
+    
+    } */
+
+    100%
+    {
+        transform: translateX(-2000px);
+    }
+    
+    /* 100%
+    {
+        transform: translateX(0px),
+    } */
+}
+    /* 0%
+    {
+        transform: translateY(-100px);
+        
+    }
+    25%
+    {
+        
+        transform: translateX(-500px);
+    }
+        
+    50%
+    {
+        transform: translateY(100px);
+    
+    }
+
+    100%
+    {
+        transform: translateX(500px),
+        
+    } 
+} 
