@@ -177,6 +177,13 @@ body{
     }
 }
 
+#gold-fish{
+    animation-delay: 2s;
+    animation: fishmove 11s linear infinite;
+}
+
+
+
 /* RED SNAPPER */
 #red-snapper{
     width: 60px;
@@ -185,6 +192,8 @@ body{
     border-radius: 50%;
     position: relative;
     margin: 50px auto;
+    animation-delay: 1s;
+    animation: fishmove 8s linear infinite;
 }
 
 #red-fin{
@@ -209,7 +218,7 @@ body{
     border-radius: 50%;
     position: relative;
     margin: 50px auto;
-    animation: fishmove 10s linear infinite;
+    /* animation: fishmove 10s linear infinite; */
 }
 
 #krill-fin{
@@ -283,50 +292,11 @@ body{
     0%
     {
         transform: translateX(0);
-        
     }
-    /* 25%
-    {
-        
-        transform: translateY(-100px);
-    } */
-/*         
-    50%
-    {
-        transform: translateX(-1000px);
-    
-    } */
 
     100%
     {
         transform: translateX(-2000px);
     }
     
-    /* 100%
-    {
-        transform: translateX(0px),
-    } */
 }
-    /* 0%
-    {
-        transform: translateY(-100px);
-        
-    }
-    25%
-    {
-        
-        transform: translateX(-500px);
-    }
-        
-    50%
-    {
-        transform: translateY(100px);
-    
-    }
-
-    100%
-    {
-        transform: translateX(500px),
-        
-    } 
-} 

@@ -4,6 +4,8 @@
 
 let move = 15;
 
+
+// console.log(randomNumber)
 // ---------------------------------//
 // -----------CACHED DOMS-----------//
 // ---------------------------------//
@@ -27,6 +29,7 @@ const playerMouth = document.querySelector('.mouth-contact')
 // ------------FUCNCTIONS ----------//
 // ---------------------------------//
 
+//chekcing if the players mouth hit a fish
 const collisionCheck = (food, player) => {
     let foodRect = food.getBoundingClientRect();
     let playerRect = player.getBoundingClientRect(); 
@@ -37,11 +40,18 @@ const collisionCheck = (food, player) => {
   }
 
 
+//render fish move animation
+const fishMoveRender = (fish, moveTime) => {
+    fish.style = `top: ${Math.floor(Math.random()*70) + 1}vh;
+    animation: fishmove ${moveTime}s linear infinite;`
+}
+
+
 // ---------------------------------//
 // -------- EVENT LISTENERS --------//
 // ---------------------------------//
 
-//Key up, down, left and right for moving the sprite
+//statrting position of the player
 window.addEventListener('load', () => {
     playerSprite.style = `position: abolsute;
     left: 0;
@@ -49,6 +59,7 @@ window.addEventListener('load', () => {
 });
 
 
+//when you hit an arrow
 window.addEventListener('keydown', (evt) => {
     switch(evt.key){
         case 'ArrowLeft':
@@ -59,43 +70,40 @@ window.addEventListener('keydown', (evt) => {
             
             break;
         case 'ArrowRight':
-                // console.log('it works')
+             
             playerSprite.style.left = parseInt(playerSprite.style.left) + move + 'px';
             break;
         case 'ArrowUp':
-                // console.log('it works')
+              
             // playerSprite.style = 'transform: rotate(-90deg);'
             playerSprite.style.top = parseInt(playerSprite.style.top) - move + 'px';
             break;
         case 'ArrowDown':
-                // console.log('it works')
+              
             playerSprite.style.top = parseInt(playerSprite.style.top) + move + 'px';
             break;
     }
 
-    setTimeout(function() {
-
-        if (collisionCheck(krillSprite, playerMouth)) {
-                krillSprite.style = `display: none;`
-            }
-        else if (collisionCheck(redSnapper, playerMouth)) {
-                redSnapper.style = `display: none;`
-            }
-        else if (collisionCheck(goldFish, playerMouth)) {
-                goldFish.style = `display: none;`
-            }
-      }, 150);
+    if (collisionCheck(krillSprite, playerMouth)) {
+            krillSprite.style = `display: none;`
+        }
+    else if (collisionCheck(redSnapper, playerMouth)) {
+            redSnapper.style = `display: none;`
+        }
+    else if (collisionCheck(goldFish, playerMouth)) {
+            goldFish.style = `display: none;`
+        }
     
 });
 
 
 
 
+fishMoveRender(krillSprite, 10)
 
+fishMoveRender(redSnapper, 8)
 
-
-
-
+fishMoveRender(goldFish, 7)
 
 
 
