@@ -9,7 +9,7 @@
   }
 
 body{
-    position: relative;
+    /* position: relative; */
     background: radial-gradient(circle, white, turquoise);
     margin: 0 auto;
 }
@@ -247,11 +247,11 @@ body{
 }
 
 /* PLAYER SPRITE*/
-.player-sprite{
+.player-sprite, .piranha-sprite{
     position: absolute;
     border: solid blue;
     height: 12%;
-    width:20%;
+    width: 20%;
     top: 0;
     left: 0;
 }
@@ -272,7 +272,18 @@ body{
    
 }
 
+.piranha-sprite > img{
+    width: 100%;
+    height: 100%;
+}
 
+.piranha-sprite{
+    animation: piranha-one 5s ease-in-out infinite;
+ 
+}
+/* #pir-one{        
+    animation: piranha-two 6s ease-in-out infinite;
+} */
 
 @keyframes sprite-animation {
     0%{
@@ -294,6 +305,7 @@ body{
     {
         transform: translateX(0);
     }
+
     100%
     {
         transform: translateX(-2000px);
@@ -302,4 +314,71 @@ body{
 }
 
 
+
+
+@keyframes piranha-one {
+    0%
+    {
+        transform: translateX(600px);
+        
+    }
+    50%
+    {
+        transform: translateY(800px);
+    }
+
+    100%
+    {
+        transform: translateX(600px);
+    }
+  }
+
+
+
+
+  @keyframes piranha-two {
+    0%
+    {   
+        left: 100%;
+        transform: translateY(1000px);
+    }
+
+    50%
+    {
+        transform: translateX(-600px);
+    }
+
+    100%
+    {
+        transform: translateY(-300px);
+    }
+  }
+
+
+
+
+
+/* alternative fish movement */
+/* @keyframes piranha {
+    0% 
+    {
+        top: 25%; left: 100%;
+    };
+    25%   
+    {
+        top: 75%; left: 75%;
+    };
+    50%   
+    {
+        top: 50%; left: 50%;
+    };
+    75%   
+    {
+        top: 25%; left: 25%;
+    };
+    100%  
+    {
+        top: 75%; left: 0px;
+    };
+  } */
 

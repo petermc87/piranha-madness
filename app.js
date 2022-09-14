@@ -16,20 +16,69 @@ const krillSprite = document.getElementById('krill')
 const redSnapper = document.getElementById('red-snapper')
 const goldFish = document.getElementById('gold-fish')
 const playerMouth = document.querySelector('.mouth-contact')
+// const piranhaOne = document.getElementById('pir-one')
+const piranhaEl = document.querySelector('.piranha-sprite')
+// console.log(piranhaEl)
 
 // ---------------------------------//
 // -------------CLASSES-------------//
 // ---------------------------------//
+
+class Piranha {
+    constructor(name, hitpoints, speed){
+        this.name = name;
+        this.hitpoints = hitpoints;
+        this.speed = speed;
+    }
+}
+
+class playerFish {
+    constructor(name, hull){
+        this.name = name;
+        this.hull = hull;
+    }
+    hullDamage(){
+        return this.hull - newPiranha.hitpoints;
+    }
+}
+
 
 
 
 // ---------------------------------//
 // -------------OBJECTS-------------//
 // ---------------------------------//
+const piranhaKillers = [
+    new Piranha('Slick Rick', 10, 7),
+    new Piranha('Billy Bully', 12, 8),
+    new Piranha('Stabby Gabby', 9, 4)
+]
+
+const fishPlayers = [
+    new playerFish('Dogfish Darcy', 37),
+    new playerFish('Silly Salmon', 55),
+    new playerFish('Carp Maguc', 42),
+]
+
+//instantiating the class with a random Piranha
+const newPiranha = piranhaKillers[Math.floor(Math.random() * piranhaKillers.length)]
+console.log(newPiranha.hitpoints)
+
+//instantiationg the player fish class
+const newPlayerFish = (fishPlayers[0])
+
 
 // ---------------------------------//
-// ------------FUCNCTIONS ----------//
+// ------------FUNCTIONS ----------//
 // ---------------------------------//
+
+const piranhaMoveRender = () =>{
+    //if statement for each piranha (differnt move direction)
+    piranhaEl.style = `
+    animation: piranha-one ${newPiranha.speed}s ease-in-out infinite;
+}`
+}
+
 
 //chekcing if the players mouth hit a fish
 const collisionCheck = (food, player) => {
@@ -42,11 +91,22 @@ const collisionCheck = (food, player) => {
   }
 
 
-//render fish move animation
+//render fish move animation, spawn in random y pos
 const fishMoveRender = (fish, moveTime) => {
     fish.style = `top: ${Math.floor(Math.random()*70) + 1}vh;
     animation: fishmove ${moveTime}s linear infinite;`
 }
+
+
+
+
+//creating the styling using render
+// const piranhaRender = () => {
+//     piranhaOne.style = `.piranha-sprite{
+//         animation: piranha-two ${newPiranha.speed}s ease-in-out infinite;
+//     }`
+// }
+
 
 
 
@@ -111,19 +171,9 @@ fishMoveRender(goldFish, 7)
 
 
 
+piranhaMoveRender()
 
-
-
-
-// if (collisionCheck(krillSprite, playerMouth)) {
-//     krillSprite.style = `display: none;`
-// }
-// else if (collisionCheck(redSnapper, playerMouth)) {
-//     redSnapper.style = `display: none;`
-// }
-// else if (collisionCheck(goldFish, playerMouth)) {
-//     goldFish.style = `display: none;`
-// }
+console.log(newPlayerFish.hullDamage())
 
 
 
