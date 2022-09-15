@@ -3,7 +3,7 @@
 // ---------------------------------//
 
 let move = 15;
-
+let fishEaten = 0;
 
 // console.log(randomNumber)
 // ---------------------------------//
@@ -11,14 +11,18 @@ let move = 15;
 // ---------------------------------//
 
 const allEatingFish = document.querySelector('.all-fish')
-const playerSprite = document.querySelector('.player-sprite')
+//spawns
 const krillSprite = document.getElementById('krill')
 const redSnapper = document.getElementById('red-snapper')
 const goldFish = document.getElementById('gold-fish')
+//player
+const playerSprite = document.querySelector('.player-sprite')
+const playerBody = document.querySelector('.player-sprite > img')
 const playerMouth = document.querySelector('.mouth-contact')
-// const piranhaOne = document.getElementById('pir-one')
+//piranha
 const piranhaEl = document.querySelector('.piranha-sprite')
-// console.log(piranhaEl)
+const pirahnhaContact = document.querySelector('.piranha-contact')
+// console.log(pirahnhaContact)
 
 // ---------------------------------//
 // -------------CLASSES-------------//
@@ -43,22 +47,26 @@ class playerFish {
 }
 
 
-
-
 // ---------------------------------//
 // -------------OBJECTS-------------//
 // ---------------------------------//
 const piranhaKillers = [
-    new Piranha('Slick Rick', 10, 7),
-    new Piranha('Billy Bully', 12, 8),
-    new Piranha('Stabby Gabby', 9, 4)
+    new Piranha('Slick Rick', 2, 7),
+    new Piranha('Billy Bully', 4, 8),
+    new Piranha('Stabby Gabby', 1.5, 4)
 ]
 
 const fishPlayers = [
-    new playerFish('Dogfish Darcy', 37),
-    new playerFish('Silly Salmon', 55),
-    new playerFish('Carp Maguc', 42),
+    new playerFish('Dogfish Darcy', 20),
+    new playerFish('Silly Salmon', 15),
+    new playerFish('Carp Magic', 25),
 ]
+
+const levelParameter = [
+    [krillSprite, redSnapper, goldFish],
+    [10, 15, 20]
+]
+
 
 //instantiating the class with a random Piranha
 const newPiranha = piranhaKillers[Math.floor(Math.random() * piranhaKillers.length)]
@@ -66,7 +74,6 @@ console.log(newPiranha.hitpoints)
 
 //instantiationg the player fish class
 const newPlayerFish = (fishPlayers[0])
-
 
 // ---------------------------------//
 // ------------FUNCTIONS ----------//
@@ -81,7 +88,7 @@ const piranhaMoveRender = () =>{
 
 
 //chekcing if the players mouth hit a fish
-const collisionCheck = (food, player) => {
+const fishCollisionCheck = (food, player) => {
     let foodRect = food.getBoundingClientRect();
     let playerRect = player.getBoundingClientRect(); 
 
@@ -97,18 +104,22 @@ const fishMoveRender = (fish, moveTime) => {
     animation: fishmove ${moveTime}s linear infinite;`
 }
 
+//checks if level is complete
+const fishEatenCheck = (currentFish) => {
+    currentFish.style = `display: none;`
+    fishEaten += 1;
+    if (fishEaten == 3){
+        currentFish.style = `display: none;`
+        window.alert('LEVEL ONE COMPLETE')
+    }
+}
 
-
-
-//creating the styling using render
-// const piranhaRender = () => {
-//     piranhaOne.style = `.piranha-sprite{
-//         animation: piranha-two ${newPiranha.speed}s ease-in-out infinite;
-//     }`
-// }
-
-
-
+//checks if player is dead
+const playerHealth = () => {
+    if (newPlayerFish.hull <= 0){
+        window.alert('YOU DIED. HIT RESTART')
+    }
+}
 
 
 // ---------------------------------//
@@ -147,21 +158,39 @@ window.addEventListener('keydown', (evt) => {
             playerSprite.style.top = parseInt(playerSprite.style.top) + move + 'px';
             break;
     }
-
-    if (collisionCheck(krillSprite, playerMouth)) {
-        krillSprite.style = `display: none;`
-    }
-    else if (collisionCheck(redSnapper, playerMouth)) {
-        redSnapper.style = `display: none;`
-    }
-    else if (collisionCheck(goldFish, playerMouth)) {
-        goldFish.style = `display: none;`
-    }
     
+    playerBody.style = `animation: sprite-hit 1s ease-in-out `
+    
+    if (fishCollisionCheck(krillSprite, playerMouth)) {
+        // krillSprite.style = `display: none;`
+        // fishEaten += 1;
+        fishEatenCheck(krillSprite)
+    }
+    else if (fishCollisionCheck(redSnapper, playerMouth)) {
+        // redSnapper.style = `display: none;`
+        // fishEaten += 1;
+        fishEatenCheck(redSnapper)
+
+    }
+    else if (fishCollisionCheck(goldFish, playerMouth)) {
+        // goldFish.style = `display: none;`
+        // fishEaten += 1;
+        fishEatenCheck(goldFish)
+    }
+    else if (fishCollisionCheck(playerBody, pirahnhaContact)){
+        playerBody.style = `animation: sprite-hit 1s linear;`
+        newPlayerFish.hull = newPlayerFish.hull - newPiranha.hitpoints;
+        console.log(newPlayerFish.hull)
+        playerHealth()
+    }
+
 });
 
 
 
+//random fish spawns
+
+levelParameter[0].forEach(sprite => console.log(levelParameter[0][Math.floor(Math.random() * levelParameter[0].length)]))
 
 fishMoveRender(krillSprite, 10)
 
@@ -173,7 +202,11 @@ fishMoveRender(goldFish, 7)
 
 piranhaMoveRender()
 
-console.log(newPlayerFish.hullDamage())
+console.log(fishEaten)
+console.log(newPlayerFish.hull)
+
+// console.log(levelParameter[1][1])
+
 
 
 
