@@ -185,7 +185,7 @@ body{
 
 
 /* RED SNAPPER */
-#red-snapper{
+#red-fish{
     width: 60px;
     height: 50px;
     background: radial-gradient(circle, #fcac0f,#ff3c00);
@@ -211,14 +211,14 @@ body{
 
 
 /* KRILL */
-#krill{
+#krill-fish{
     width: 85px;
     height: 30px;
     background: radial-gradient(circle, #95f6f9,#009dff);
     border-radius: 50%;
     position: relative;
     margin: 50px auto;
-    /* animation: fishmove 10s linear infinite; */
+    animation: fishmove 10s linear infinite;
 }
 
 #krill-fin{

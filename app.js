@@ -12,9 +12,10 @@ let fishEaten = 0;
 
 const allEatingFish = document.querySelector('.all-fish')
 //spawns
-const krillSprite = document.getElementById('krill')
-const redSnapper = document.getElementById('red-snapper')
+const krillSprite = document.getElementById('krill-fish')
+const redSnapper = document.getElementById('red-fish')
 const goldFish = document.getElementById('gold-fish')
+const fishSpawning = document.querySelector('.spawned-fish')
 //player
 const playerSprite = document.querySelector('.player-sprite')
 const playerBody = document.querySelector('.player-sprite > img')
@@ -63,8 +64,9 @@ const fishPlayers = [
 ]
 
 const levelParameter = [
-    [krillSprite, redSnapper, goldFish],
-    [10, 15, 20]
+    ['krill', 'gold', 'red'],
+    [10, 15, 20],
+    [7, 8, 3, 6, 2, 4]
 ]
 
 
@@ -100,9 +102,28 @@ const fishCollisionCheck = (food, player) => {
 
 //render fish move animation, spawn in random y pos
 const fishMoveRender = (fish, moveTime) => {
-    fish.style = `top: ${Math.floor(Math.random()*70) + 1}vh;
+    // let fishId =fish.getAttribute('id')
+
+    // console.log(moveTime)
+  
+ console.log(fish)
+    
+    let currentEl = fishSpawning.innerHTML = `<div class="fish" id="${fish}-fish">
+    <div class="fin" id="${fish}-fin"></div>
+    <div class="mouth"></div>
+    <div class="eye">
+        <div class="m"></div>
+    </div>
+    <div class="g" id="${fish}-gill"></div>
+    <div class="t1" id="${fish}-tail"></div>
+    <div class="t2" id="${fish}-tail"></div>
+</div>`
+
+    currentEl.style = `top: ${Math.floor(Math.random()*70) + 1}vh;
     animation: fishmove ${moveTime}s linear infinite;`
-}
+    }
+   
+
 
 //checks if level is complete
 const fishEatenCheck = (currentFish) => {
@@ -119,6 +140,11 @@ const playerHealth = () => {
     if (newPlayerFish.hull <= 0){
         window.alert('YOU DIED. HIT RESTART')
     }
+}
+
+//random selector
+const randomSelector = (array, iterator) => {
+    return levelParameter[array][Math.floor(Math.random() * iterator.length)]
 }
 
 
@@ -188,24 +214,33 @@ window.addEventListener('keydown', (evt) => {
 
 
 
-//random fish spawns
+//level one random fish spawns
+for (i = 0; i < levelParameter[1][0]; i++){
 
-levelParameter[0].forEach(sprite => console.log(levelParameter[0][Math.floor(Math.random() * levelParameter[0].length)]))
 
-fishMoveRender(krillSprite, 10)
+    //random select fish
+    let randomFish = randomSelector(0, levelParameter[0]);
+    //select random time
+    let randomTime = randomSelector(2, levelParameter[2]);
 
-fishMoveRender(redSnapper, 8)
+    fishMoveRender(randomFish, randomTime)
 
-fishMoveRender(goldFish, 7)
+}
+   
+
+// fishMoveRender(krillSprite, 10)
+
+// fishMoveRender(redSnapper, 8)
+
+// fishMoveRender(goldFish, 7)
 
 
 
 piranhaMoveRender()
 
-console.log(fishEaten)
-console.log(newPlayerFish.hull)
+// console.log(fishEaten)
+// console.log(newPlayerFish.hull)
 
-// console.log(levelParameter[1][1])
 
 
 
