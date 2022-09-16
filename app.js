@@ -16,6 +16,7 @@ const krillSprite = document.getElementById('krill-fish')
 const redSnapper = document.getElementById('red-fish')
 const goldFish = document.getElementById('gold-fish')
 const fishSpawning = document.querySelector('.spawned-fish')
+const allNewSpawns = document.querySelectorAll('.new-spawn')
 //player
 const playerSprite = document.querySelector('.player-sprite')
 const playerBody = document.querySelector('.player-sprite > img')
@@ -23,7 +24,8 @@ const playerMouth = document.querySelector('.mouth-contact')
 //piranha
 const piranhaEl = document.querySelector('.piranha-sprite')
 const pirahnhaContact = document.querySelector('.piranha-contact')
-// console.log(pirahnhaContact)
+// console.log(allNewSpawns)
+
 
 // ---------------------------------//
 // -------------CLASSES-------------//
@@ -66,7 +68,7 @@ const fishPlayers = [
 const levelParameter = [
     ['krill', 'gold', 'red'],
     [10, 15, 20],
-    [7, 8, 3, 6, 2, 4]
+    [10, 8, 3, 6, 12, 4, 5 ,7, 9]
 ]
 
 
@@ -101,26 +103,68 @@ const fishCollisionCheck = (food, player) => {
 
 
 //render fish move animation, spawn in random y pos
-const fishMoveRender = (fish, moveTime) => {
+const fishMoveRender = (fish, moveTime, currentIterator) => {
     // let fishId =fish.getAttribute('id')
-
+console.log(moveTime)
     // console.log(moveTime)
-  
- console.log(fish)
-    
-    let currentEl = fishSpawning.innerHTML = `<div class="fish" id="${fish}-fish">
-    <div class="fin" id="${fish}-fin"></div>
-    <div class="mouth"></div>
-    <div class="eye">
-        <div class="m"></div>
-    </div>
-    <div class="g" id="${fish}-gill"></div>
-    <div class="t1" id="${fish}-tail"></div>
-    <div class="t2" id="${fish}-tail"></div>
-</div>`
+// console.log(currentIterator)
+//  console.log(fish)
+// const randomHeight = Math.floor(Math.random()* (90 - 30 + 1) + 30)
+const randomHeight = -4
 
-    currentEl.style = `top: ${Math.floor(Math.random()*70) + 1}vh;
-    animation: fishmove ${moveTime}s linear infinite;`
+// console.log(randomHeight)
+//  let currentEl = null
+if (fish === 'gold'){
+allEatingFish.innerHTML +=` <div class="fish" id="gold-fish" style= "left: 95vw; top: ${randomHeight}vh;
+animation: fishmove ${moveTime}s linear infinite;">
+        <div class="fin"></div>
+        <div class="mouth"></div>
+        <div class="eye">
+            <div class="m"></div>
+        </div>
+        <div class="g"id="gold-gill"></div>
+        <div class="t1"id="gold-gill"></div>
+        <div class="t2"id="gold-gill"></div>
+        </div>`
+}
+
+else {
+    allEatingFish.innerHTML +=` <div class="fish-${currentIterator}" id="${fish}-fish" 
+    style= "left: 95vw; top: ${randomHeight}vh;
+    animation: fishmove ${moveTime}s linear infinite;">
+        <div class="fin" id="${fish}-fin"></div>
+        <div class="mouth"></div>
+        <div class="eye">
+            <div class="m"></div>
+        </div>
+        <div class="g" id="${fish}-gill"></div>
+        <div class="t1" id="${fish}-tail"></div>
+        <div class="t2" id="${fish}-tail"></div>
+        </div>`
+    // const currentEl =`fish-${currentIterator}`
+    // console.log(currentEl)
+    //     currentEl.style = `top: ${Math.floor(Math.random()*70) + 1}vh;
+    //     animation: fishmove ${moveTime}s linear infinite;`
+}
+
+// console.log(document.querySelector('.fish-${curee}'))
+// console.log(currentEl)
+// currentEl.style = `top: ${Math.floor(Math.random()*70) + 1}vh;
+// animation: fishmove ${moveTime}s linear infinite;`  
+
+//    let currentEl = allEatingFish.innerHTML += `<div class="fish" id="${fish}-fish ${currentIterator} ">
+//     <div class="fin" id="${fish}-fin"></div>
+//     <div class="mouth"></div>
+//     <div class="eye">
+//         <div class="m"></div>
+//     </div>
+//     <div class="g" id="${fish}-gill"></div>
+//     <div class="t1" id="${fish}-tail"></div>
+//     <div class="t2" id="${fish}-tail"></div>
+// </div>`
+
+    // currentEl.style = `top: ${Math.floor(Math.random()*70) + 1}vh;
+    // animation: fishmove ${moveTime}s linear infinite;`
     }
    
 
@@ -185,7 +229,7 @@ window.addEventListener('keydown', (evt) => {
             break;
     }
     
-    playerBody.style = `animation: sprite-hit 1s ease-in-out `
+    // playerBody.style = `animation: sprite-hit 1s ease-in-out `
     
     if (fishCollisionCheck(krillSprite, playerMouth)) {
         // krillSprite.style = `display: none;`
@@ -217,13 +261,12 @@ window.addEventListener('keydown', (evt) => {
 //level one random fish spawns
 for (i = 0; i < levelParameter[1][0]; i++){
 
-
     //random select fish
     let randomFish = randomSelector(0, levelParameter[0]);
     //select random time
     let randomTime = randomSelector(2, levelParameter[2]);
 
-    fishMoveRender(randomFish, randomTime)
+    fishMoveRender(randomFish, randomTime, i)
 
 }
    

@@ -179,7 +179,7 @@ body{
 
 #gold-fish{
     animation-delay: 2s;
-    animation: fishmove 11s linear infinite;
+    /* animation: fishmove 11s linear infinite; */
 }
 
 
@@ -193,7 +193,7 @@ body{
     position: relative;
     margin: 50px auto;
     animation-delay: 1s;
-    animation: fishmove 8s linear infinite;
+    /* animation: fishmove 8s linear infinite; */
 }
 
 #red-fin{
@@ -218,7 +218,7 @@ body{
     border-radius: 50%;
     position: relative;
     margin: 50px auto;
-    animation: fishmove 10s linear infinite;
+    /* animation: fishmove 10s linear infinite; */
 }
 
 #krill-fin{
