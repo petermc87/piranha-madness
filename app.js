@@ -18,7 +18,7 @@ const playerMouth = document.querySelector('.mouth-contact')
 //piranha
 const piranhaEl = document.querySelector('.piranha-sprite')
 const piranhaOne = document.getElementById('pir-one')
-console.log(piranhaEl)
+// console.log(piranhaEl)
 const pirahnhaContact = document.querySelector('.piranha-contact')
 
 //title screen
@@ -30,6 +30,14 @@ const modal = document.querySelector('#modal');
 const continueBtn = document.querySelector('#continue');
 const allButtons = document.querySelector('.modal-buttons')
 
+//stats
+const hullUpdate = document.getElementById('hull');
+const eaten = document.getElementById('eaten');
+const thisLevel = document.getElementById('level');
+const thisFish = document.getElementById('name');
+const statContainer = document.querySelector('.stat-container');
+const messageBar = document.querySelector('.message-panel');
+const liveMessage = document.querySelector('.live-message')
 
 
 // ---------------------------------//
@@ -50,6 +58,7 @@ class playerFish {
         this.hull = hull;
     }
     hullDamage(){
+        // hullUpdate.innerHTML = this.hull;
         return this.hull - newPiranha.hitpoints;
     }
 }
@@ -88,19 +97,20 @@ const newPlayerFish = (fishPlayers[0])
 // ------------FUNCTIONS ----------//
 // ---------------------------------//
 
+//message bar update
+const messageUpdate = (thisMessage) => {
+    liveMessage.innerHTML = thisMessage;
+}
+
+
 //fish spawning
 const fishSpawn = (currentLevel) => {
-
     for (i = 0; i < levelParameter[1][currentLevel]; i++){
-
         //random select fish
         let randomFish = randomSelector(0, levelParameter[0]);
-
         //select random time
         let randomTime = randomSelector(2, levelParameter[2]);
-
         fishMoveRender(randomFish, randomTime)
-
     }
 }
 
@@ -119,11 +129,15 @@ const openModal = () => {
 //next window
 const nextWindow = () => {
     modal.style.display = 'none';
-    // carouselDiv.style.display = 'flex';
     allButtons.style.display = 'none';
     playerSprite.style.display = 'block';
     piranhaOne.style.display = 'block';
     titleScreen.style.display = 'none';
+    hullUpdate.innerHTML = newPlayerFish.hull;
+    thisFish.innerHTML = newPlayerFish.name;
+    statContainer.style.display = 'block';
+    messageBar.style.display = 'block';
+    messageUpdate('THE RIVER OF DESTINY...');
     fishSpawn(currentLevel)
     piranhaMoveRender()
 }
@@ -135,20 +149,22 @@ const nextLevel = () =>{
         window.alert('LEVEL ' + (currentLevel + 1) + ' COMPLETE')
         currentLevel += 1
         fishEaten = 0
+        eaten.innerHTML = fishEaten;
+        thisLevel.innerHTML = (currentLevel + 1);
         fishSpawn(currentLevel)
         piranhaMoveRender()
+        if (currentLevel == 1){
+            messageUpdate('THE SEA OF SILENCE...')
+        }
     }
     else{
         window.alert('LEVEL ' + (currentLevel + 1) + ' COMPLETE')
-        // currentLevel += 1
         fishEaten = 0
     }
 }
 
 
-
-
-//chekcing if the players mouth hit a fish
+//checking if the players mouth hit a fish
 const fishCollisionCheck = (food, player) => {
     let foodRect = food.getBoundingClientRect();
     let playerRect = player.getBoundingClientRect(); 
@@ -165,8 +181,10 @@ const randomHeight = -4
 
 if (fish === 'gold'){
     currentFish = allEatingFish.innerHTML +=` <div class="fish" id="gold-fish" 
-        style= "left: 110vw; top: ${randomHeight}vh;
-        animation: fishmove ${moveTime}s linear infinite;">
+        style= "
+        left: 110vw; top: ${randomHeight}vh;
+        animation: fishmove ${moveTime}s linear infinite;
+        ">
         <div class="fin"></div>
         <div class="mouth"></div>
         <div class="eye">
@@ -176,12 +194,12 @@ if (fish === 'gold'){
         <div class="t1"id="gold-gill"></div>
         <div class="t2"id="gold-gill"></div>
         </div>`
-    
     }
 
 else {
     currentFish = allEatingFish.innerHTML +=` <div class="fish" id="${fish}-fish" 
-        style= "left: 60vw; top: ${randomHeight}vh;
+        style= 
+        "left: 60vw; top: ${randomHeight}vh;
         animation: fishmove ${moveTime}s linear infinite;">
         <div class="fin" id="${fish}-fin"></div>
         <div class="mouth"></div>
@@ -192,9 +210,7 @@ else {
         <div class="t1" id="${fish}-tail"></div>
         <div class="t2" id="${fish}-tail"></div>
         </div>`
-     
     }
-    
 }
    
 
@@ -203,20 +219,29 @@ else {
 const fishEatenCheck = (currentFish) => {
     currentFish.style = `display: none;`
     fishEaten += 1;
-    if (fishEaten == 10 && currentLevel == 0){
+    eaten.innerHTML = fishEaten;
+
+    if (fishEaten == 7 && currentLevel == 0){
+        // messageBar.innerHTML = `ONLY 3 FISH LEFT!`;
+        messageUpdate('ONLY 3 FISH lEFT!!')
+    }
+    else if (fishEaten == 10 && currentLevel == 0){
         currentFish.style = `display: none;`
         nextLevel()
-        
+    }
+    else if (fishEaten == 12 && currentLevel == 1){
+        messageUpdate('ONLY 3 FISH lEFT!!')
     }
     else if (fishEaten == 15 && currentLevel == 1){
         currentFish.style = `display: none;`
         nextLevel()
-        
+    }
+    else if (fishEaten == 17 && currentLevel == 2){
+        messageUpdate('ONLY 3 FISH lEFT!!')
     }
     else if (fishEaten == 20 && currentLevel == 2){
         currentFish.style = `display: none;`
         nextLevel()
-       
     }
 }
 
@@ -243,10 +268,11 @@ const randomSelector = (array, iterator) => {
 // -------- EVENT LISTENERS --------//
 // ---------------------------------//
 
+//the start game button
 gameStartButton.addEventListener('click', openModal)
 
+//moves into the 
 continueBtn.addEventListener('click', nextWindow)
-
 
 //statrting position of the player
 window.addEventListener('load', () => {
@@ -256,7 +282,7 @@ window.addEventListener('load', () => {
 });
 
 
-//when you hit an arrow
+//when you hit an arrow key
 window.addEventListener('keydown', (evt) => {
     switch(evt.key){
         case 'ArrowLeft':
@@ -264,36 +290,34 @@ window.addEventListener('keydown', (evt) => {
             // playerSprite.style = 'transform: rotate(180deg);'
             // playerSprite.style = 'transform: rotateY(180deg);'
             playerSprite.style.left = parseInt(playerSprite.style.left) - move + 'px';
-            
             break;
-        case 'ArrowRight':
-             
+
+        case 'ArrowRight': 
             playerSprite.style.left = parseInt(playerSprite.style.left) + move + 'px';
             break;
-        case 'ArrowUp':
-              
+
+        case 'ArrowUp':  
             // playerSprite.style = 'transform: rotate(-90deg);'
             playerSprite.style.top = parseInt(playerSprite.style.top) - move + 'px';
             break;
-        case 'ArrowDown':
-              
+
+        case 'ArrowDown':  
             playerSprite.style.top = parseInt(playerSprite.style.top) + move + 'px';
             break;
     }
+
     const allFishEls = document.querySelectorAll('.fish')
     allFishEls.forEach((thisFish)=>{
-       
         if (fishCollisionCheck(thisFish, playerMouth)) {
-      
             fishEatenCheck(thisFish)
         }
     })
     
    
-
     if (fishCollisionCheck(playerBody, pirahnhaContact)){
         playerBody.style = `animation: sprite-hit 1s linear;`
         newPlayerFish.hull = newPlayerFish.hull - newPiranha.hitpoints;
+        hullUpdate.innerHTML = newPlayerFish.hull;
         console.log(newPlayerFish.hull)
         playerHealth()
     }
