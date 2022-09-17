@@ -4,8 +4,9 @@
 
 let move = 15;
 let fishEaten = 0;
-let currentFish = null;
-let allRenderedFish = [];
+// let currentFish = null;
+// let allRenderedFish = [];
+let currentLevel = 0;
 // console.log(randomNumber)
 // ---------------------------------//
 // -----------CACHED DOMS-----------//
@@ -84,35 +85,65 @@ const newPlayerFish = (fishPlayers[0])
 // ------------FUNCTIONS ----------//
 // ---------------------------------//
 
+//fish spawning
+const fishSpawn = (currentLevel) => {
+
+    for (i = 0; i < levelParameter[1][currentLevel]; i++){
+
+        //random select fish
+        let randomFish = randomSelector(0, levelParameter[0]);
+
+        //select random time
+        let randomTime = randomSelector(2, levelParameter[2]);
+
+        fishMoveRender(randomFish, randomTime)
+
+    }
+}
+
+const nextLevel = () =>{
+    if (currentLevel == 0 || currentLevel == 1){
+        window.alert('LEVEL ' + (currentLevel + 1) + ' COMPLETE')
+        currentLevel += 1
+        fishEaten = 0
+        fishSpawn(currentLevel)
+        piranhaMoveRender()
+    }
+    else{
+        window.alert('LEVEL ' + (currentLevel + 1) + ' COMPLETE')
+        // currentLevel += 1
+        fishEaten = 0
+    }
+}
+
+
+//renders the piranhas spped
 const piranhaMoveRender = () =>{
     //if statement for each piranha (differnt move direction)
     piranhaEl.style = `
-    animation: piranha-one ${newPiranha.speed}s ease-in-out infinite;
+    animation: piranha-two ${newPiranha.speed}s ease-in-out infinite;
 }`
 }
 
 
 //chekcing if the players mouth hit a fish
 const fishCollisionCheck = (food, player) => {
-    // console.log(food)
     let foodRect = food.getBoundingClientRect();
     let playerRect = player.getBoundingClientRect(); 
-
-    // return a reaction between 2 divs from all directions
     return (foodRect.right >= playerRect.left && foodRect.left <= playerRect.right) && 
     (foodRect.bottom >= playerRect.top && foodRect.top <= playerRect.bottom);
   }
 
 
 //render fish move animation, spawn in random y pos
-const fishMoveRender = (fish, moveTime, currentIterator) => {
+const fishMoveRender = (fish, moveTime) => {
 console.log(moveTime)
 
 const randomHeight = -4
 
 if (fish === 'gold'){
     currentFish = allEatingFish.innerHTML +=` <div class="fish" id="gold-fish" 
-        style= "left: 60vw; top: ${randomHeight}vh;
+        style= "left: 110vw; top: ${randomHeight}vh;
         animation: fishmove ${moveTime}s linear infinite;">
         <div class="fin"></div>
         <div class="mouth"></div>
@@ -150,18 +181,35 @@ else {
 const fishEatenCheck = (currentFish) => {
     currentFish.style = `display: none;`
     fishEaten += 1;
-    if (fishEaten == 10){
+    if (fishEaten == 10 && currentLevel == 0){
         currentFish.style = `display: none;`
-        window.alert('LEVEL ONE COMPLETE')
+        nextLevel()
+        
+    }
+    else if (fishEaten == 15 && currentLevel == 1){
+        currentFish.style = `display: none;`
+        nextLevel()
+        
+    }
+    else if (fishEaten == 20 && currentLevel == 2){
+        currentFish.style = `display: none;`
+        nextLevel()
+       
     }
 }
 
-//checks if player is dead
+
 const playerHealth = () => {
     if (newPlayerFish.hull <= 0){
         window.alert('YOU DIED. HIT RESTART')
+        currentLevel =0
+        fishEaten = 0
+        // allEatingFish.style = `display: none;`
+        allEatingFish.innerHTML = `<div> YOU LOSE!</div>`
     }
 }
+
+
 
 //random selector
 const randomSelector = (array, iterator) => {
@@ -205,7 +253,7 @@ window.addEventListener('keydown', (evt) => {
             playerSprite.style.top = parseInt(playerSprite.style.top) + move + 'px';
             break;
     }
-
+    const allFishEls = document.querySelectorAll('.fish')
     allFishEls.forEach((thisFish)=>{
        
         if (fishCollisionCheck(thisFish, playerMouth)) {
@@ -228,22 +276,20 @@ window.addEventListener('keydown', (evt) => {
 
 
 //level one random fish spawns
-for (i = 0; i < levelParameter[1][0]; i++){
+// for (i = 0; i < levelParameter[1][2]; i++){
 
-    //random select fish
-    let randomFish = randomSelector(0, levelParameter[0]);
-    //select random time
-    let randomTime = randomSelector(2, levelParameter[2]);
+//     //random select fish
+//     let randomFish = randomSelector(0, levelParameter[0]);
+//     //select random time
+//     let randomTime = randomSelector(2, levelParameter[2]);
 
-    let currentEl = fishMoveRender(randomFish, randomTime, i)
-    // allRenderedFish.push(currentEl)
-    // console.log(currentEl)
-    
+//     fishMoveRender(randomFish, randomTime)
 
-}
+// }
+
+fishSpawn(currentLevel)
 
 
-const allFishEls = document.querySelectorAll('.fish')
 
 
 piranhaMoveRender()

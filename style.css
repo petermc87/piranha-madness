@@ -12,6 +12,7 @@ body{
     /* position: relative; */
     background: radial-gradient(circle, white, turquoise);
     margin: 0 auto;
+    /* overflow: hidden; */
 }
 
 .title{
@@ -68,11 +69,12 @@ body{
     height: 90vh;
 }
 .fish{
+    position: absolute;
     width: 60px;
     height: 33px;
     background: radial-gradient(circle, #ffde4a, #fcac0f);
     border-radius: 50%;
-    position: relative;
+    /* position: relative; */
     margin: 50px auto;
     left: 50vw;
 }
@@ -280,6 +282,7 @@ body{
 }
 
 .piranha-sprite{
+    z-index: 1;
     animation: piranha-one 5s ease-in-out infinite;
 }
 
