@@ -4,19 +4,17 @@
 
 let move = 15;
 let fishEaten = 0;
-
+let currentFish = null;
+let allRenderedFish = [];
 // console.log(randomNumber)
 // ---------------------------------//
 // -----------CACHED DOMS-----------//
 // ---------------------------------//
 
-const allEatingFish = document.querySelector('.all-fish')
+const allEatingFish = document.querySelector('.all-sprites')
 //spawns
-const krillSprite = document.getElementById('krill-fish')
-const redSnapper = document.getElementById('red-fish')
-const goldFish = document.getElementById('gold-fish')
-const fishSpawning = document.querySelector('.spawned-fish')
-const allNewSpawns = document.querySelectorAll('.new-spawn')
+// const krillSprite = document.getElementById('krill-fish')
+// const redSnapper = document.getElementById('red-fish')
 //player
 const playerSprite = document.querySelector('.player-sprite')
 const playerBody = document.querySelector('.player-sprite > img')
@@ -26,6 +24,9 @@ const piranhaEl = document.querySelector('.piranha-sprite')
 const pirahnhaContact = document.querySelector('.piranha-contact')
 // console.log(allNewSpawns)
 
+console.log(allEatingFish)
+// console.log(eatingFishArray)
+// console.log(fishTwo)
 
 // ---------------------------------//
 // -------------CLASSES-------------//
@@ -68,7 +69,7 @@ const fishPlayers = [
 const levelParameter = [
     ['krill', 'gold', 'red'],
     [10, 15, 20],
-    [10, 8, 3, 6, 12, 4, 5 ,7, 9]
+    [10, 8, 3, 6, 12, 4, 5, 7, 9, 13, 14]
 ]
 
 
@@ -93,6 +94,7 @@ const piranhaMoveRender = () =>{
 
 //chekcing if the players mouth hit a fish
 const fishCollisionCheck = (food, player) => {
+    // console.log(food)
     let foodRect = food.getBoundingClientRect();
     let playerRect = player.getBoundingClientRect(); 
 
@@ -104,19 +106,14 @@ const fishCollisionCheck = (food, player) => {
 
 //render fish move animation, spawn in random y pos
 const fishMoveRender = (fish, moveTime, currentIterator) => {
-    // let fishId =fish.getAttribute('id')
 console.log(moveTime)
-    // console.log(moveTime)
-// console.log(currentIterator)
-//  console.log(fish)
-// const randomHeight = Math.floor(Math.random()* (90 - 30 + 1) + 30)
+
 const randomHeight = -4
 
-// console.log(randomHeight)
-//  let currentEl = null
 if (fish === 'gold'){
-allEatingFish.innerHTML +=` <div class="fish" id="gold-fish" style= "left: 95vw; top: ${randomHeight}vh;
-animation: fishmove ${moveTime}s linear infinite;">
+    currentFish = allEatingFish.innerHTML +=` <div class="fish" id="gold-fish" 
+        style= "left: 60vw; top: ${randomHeight}vh;
+        animation: fishmove ${moveTime}s linear infinite;">
         <div class="fin"></div>
         <div class="mouth"></div>
         <div class="eye">
@@ -126,12 +123,13 @@ animation: fishmove ${moveTime}s linear infinite;">
         <div class="t1"id="gold-gill"></div>
         <div class="t2"id="gold-gill"></div>
         </div>`
-}
+    
+    }
 
 else {
-    allEatingFish.innerHTML +=` <div class="fish-${currentIterator}" id="${fish}-fish" 
-    style= "left: 95vw; top: ${randomHeight}vh;
-    animation: fishmove ${moveTime}s linear infinite;">
+    currentFish = allEatingFish.innerHTML +=` <div class="fish" id="${fish}-fish" 
+        style= "left: 60vw; top: ${randomHeight}vh;
+        animation: fishmove ${moveTime}s linear infinite;">
         <div class="fin" id="${fish}-fin"></div>
         <div class="mouth"></div>
         <div class="eye">
@@ -141,31 +139,10 @@ else {
         <div class="t1" id="${fish}-tail"></div>
         <div class="t2" id="${fish}-tail"></div>
         </div>`
-    // const currentEl =`fish-${currentIterator}`
-    // console.log(currentEl)
-    //     currentEl.style = `top: ${Math.floor(Math.random()*70) + 1}vh;
-    //     animation: fishmove ${moveTime}s linear infinite;`
-}
-
-// console.log(document.querySelector('.fish-${curee}'))
-// console.log(currentEl)
-// currentEl.style = `top: ${Math.floor(Math.random()*70) + 1}vh;
-// animation: fishmove ${moveTime}s linear infinite;`  
-
-//    let currentEl = allEatingFish.innerHTML += `<div class="fish" id="${fish}-fish ${currentIterator} ">
-//     <div class="fin" id="${fish}-fin"></div>
-//     <div class="mouth"></div>
-//     <div class="eye">
-//         <div class="m"></div>
-//     </div>
-//     <div class="g" id="${fish}-gill"></div>
-//     <div class="t1" id="${fish}-tail"></div>
-//     <div class="t2" id="${fish}-tail"></div>
-// </div>`
-
-    // currentEl.style = `top: ${Math.floor(Math.random()*70) + 1}vh;
-    // animation: fishmove ${moveTime}s linear infinite;`
+     
     }
+    
+}
    
 
 
@@ -173,7 +150,7 @@ else {
 const fishEatenCheck = (currentFish) => {
     currentFish.style = `display: none;`
     fishEaten += 1;
-    if (fishEaten == 3){
+    if (fishEaten == 10){
         currentFish.style = `display: none;`
         window.alert('LEVEL ONE COMPLETE')
     }
@@ -228,26 +205,18 @@ window.addEventListener('keydown', (evt) => {
             playerSprite.style.top = parseInt(playerSprite.style.top) + move + 'px';
             break;
     }
-    
-    // playerBody.style = `animation: sprite-hit 1s ease-in-out `
-    
-    if (fishCollisionCheck(krillSprite, playerMouth)) {
-        // krillSprite.style = `display: none;`
-        // fishEaten += 1;
-        fishEatenCheck(krillSprite)
-    }
-    else if (fishCollisionCheck(redSnapper, playerMouth)) {
-        // redSnapper.style = `display: none;`
-        // fishEaten += 1;
-        fishEatenCheck(redSnapper)
 
-    }
-    else if (fishCollisionCheck(goldFish, playerMouth)) {
-        // goldFish.style = `display: none;`
-        // fishEaten += 1;
-        fishEatenCheck(goldFish)
-    }
-    else if (fishCollisionCheck(playerBody, pirahnhaContact)){
+    allFishEls.forEach((thisFish)=>{
+       
+        if (fishCollisionCheck(thisFish, playerMouth)) {
+      
+            fishEatenCheck(thisFish)
+        }
+    })
+    
+   
+
+    if (fishCollisionCheck(playerBody, pirahnhaContact)){
         playerBody.style = `animation: sprite-hit 1s linear;`
         newPlayerFish.hull = newPlayerFish.hull - newPiranha.hitpoints;
         console.log(newPlayerFish.hull)
@@ -266,17 +235,15 @@ for (i = 0; i < levelParameter[1][0]; i++){
     //select random time
     let randomTime = randomSelector(2, levelParameter[2]);
 
-    fishMoveRender(randomFish, randomTime, i)
+    let currentEl = fishMoveRender(randomFish, randomTime, i)
+    // allRenderedFish.push(currentEl)
+    // console.log(currentEl)
+    
 
 }
-   
 
-// fishMoveRender(krillSprite, 10)
 
-// fishMoveRender(redSnapper, 8)
-
-// fishMoveRender(goldFish, 7)
-
+const allFishEls = document.querySelectorAll('.fish')
 
 
 piranhaMoveRender()
