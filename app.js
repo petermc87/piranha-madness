@@ -2,32 +2,35 @@
 // -------- GLOBAL VARIABLES -------//
 // ---------------------------------//
 
-let move = 15;
+let move = 20;
 let fishEaten = 0;
-// let currentFish = null;
-// let allRenderedFish = [];
 let currentLevel = 0;
-// console.log(randomNumber)
+
 // ---------------------------------//
 // -----------CACHED DOMS-----------//
 // ---------------------------------//
 
 const allEatingFish = document.querySelector('.all-sprites')
-//spawns
-// const krillSprite = document.getElementById('krill-fish')
-// const redSnapper = document.getElementById('red-fish')
-//player
+//player sprite
 const playerSprite = document.querySelector('.player-sprite')
 const playerBody = document.querySelector('.player-sprite > img')
 const playerMouth = document.querySelector('.mouth-contact')
 //piranha
 const piranhaEl = document.querySelector('.piranha-sprite')
+const piranhaOne = document.getElementById('pir-one')
+console.log(piranhaEl)
 const pirahnhaContact = document.querySelector('.piranha-contact')
-// console.log(allNewSpawns)
 
-console.log(allEatingFish)
-// console.log(eatingFishArray)
-// console.log(fishTwo)
+//title screen
+const titleScreen = document.querySelector('.title')
+
+//modal
+const gameStartButton = document.querySelector('#openModal');
+const modal = document.querySelector('#modal');
+const continueBtn = document.querySelector('#continue');
+const allButtons = document.querySelector('.modal-buttons')
+
+
 
 // ---------------------------------//
 // -------------CLASSES-------------//
@@ -101,6 +104,32 @@ const fishSpawn = (currentLevel) => {
     }
 }
 
+//renders the piranhas spped
+const piranhaMoveRender = () =>{
+    //if statement for each piranha (differnt move direction)
+    piranhaEl.style = `
+    animation: piranha-two ${newPiranha.speed}s ease-in-out infinite;`
+}
+
+//opening the main modal window
+const openModal = () => {
+    modal.style.display = 'flex';
+}
+
+//next window
+const nextWindow = () => {
+    modal.style.display = 'none';
+    // carouselDiv.style.display = 'flex';
+    allButtons.style.display = 'none';
+    playerSprite.style.display = 'block';
+    piranhaOne.style.display = 'block';
+    titleScreen.style.display = 'none';
+    fishSpawn(currentLevel)
+    piranhaMoveRender()
+}
+
+
+
 const nextLevel = () =>{
     if (currentLevel == 0 || currentLevel == 1){
         window.alert('LEVEL ' + (currentLevel + 1) + ' COMPLETE')
@@ -117,13 +146,6 @@ const nextLevel = () =>{
 }
 
 
-//renders the piranhas spped
-const piranhaMoveRender = () =>{
-    //if statement for each piranha (differnt move direction)
-    piranhaEl.style = `
-    animation: piranha-two ${newPiranha.speed}s ease-in-out infinite;
-}`
-}
 
 
 //chekcing if the players mouth hit a fish
@@ -201,9 +223,9 @@ const fishEatenCheck = (currentFish) => {
 
 const playerHealth = () => {
     if (newPlayerFish.hull <= 0){
-        window.alert('YOU DIED. HIT RESTART')
-        currentLevel =0
-        fishEaten = 0
+        window.alert('YOU DIED. HIT RESTART');
+        currentLevel = 0;
+        fishEaten = 0;
         // allEatingFish.style = `display: none;`
         allEatingFish.innerHTML = `<div> YOU LOSE!</div>`
     }
@@ -220,6 +242,11 @@ const randomSelector = (array, iterator) => {
 // ---------------------------------//
 // -------- EVENT LISTENERS --------//
 // ---------------------------------//
+
+gameStartButton.addEventListener('click', openModal)
+
+continueBtn.addEventListener('click', nextWindow)
+
 
 //statrting position of the player
 window.addEventListener('load', () => {
@@ -275,33 +302,12 @@ window.addEventListener('keydown', (evt) => {
 
 
 
-//level one random fish spawns
-// for (i = 0; i < levelParameter[1][2]; i++){
-
-//     //random select fish
-//     let randomFish = randomSelector(0, levelParameter[0]);
-//     //select random time
-//     let randomTime = randomSelector(2, levelParameter[2]);
-
-//     fishMoveRender(randomFish, randomTime)
-
-// }
-
-fishSpawn(currentLevel)
 
 
 
+// fishSpawn(currentLevel)
 
-piranhaMoveRender()
-
-// console.log(fishEaten)
-// console.log(newPlayerFish.hull)
-
-
-
-
-
-
+// piranhaMoveRender()
 
 
 

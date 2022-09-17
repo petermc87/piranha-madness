@@ -12,7 +12,9 @@ body{
     /* position: relative; */
     background: radial-gradient(circle, white, turquoise);
     margin: 0 auto;
-    /* overflow: hidden; */
+    overflow: hidden;
+    /* background-color: red; */
+    /* pointer-events:none; */
 }
 
 .title{
@@ -25,6 +27,7 @@ body{
     top: 1%;
     height: 45vh;
     z-index: 1;
+    /* background-color: rebeccapurple; */
 }
 
 .title-text{
@@ -67,6 +70,8 @@ body{
 .all-sprites{
     border: solid red;
     height: 90vh;
+    z-index: -1;
+    /* pointer-events:none; */
 }
 .fish{
     position: absolute;
@@ -256,6 +261,7 @@ body{
     width: 20%;
     top: 0;
     left: 0;
+    /* display: none; */
 }
 
 .player-sprite > img{
@@ -273,6 +279,9 @@ body{
     position: absolute;
    
 }
+.player-sprite{
+    display: none;
+}
 
 /* PIRANHA */
 
@@ -284,11 +293,91 @@ body{
 .piranha-sprite{
     z-index: 1;
     animation: piranha-one 5s ease-in-out infinite;
+    /* display: none; */
 }
 
 .piranha-contact{
     height: 40%;
 }
+
+#pir-one{
+    display: none;
+}
+
+
+/* ===== MODAL STYLING ===== */
+#modal {
+	background-color: rgba(0, 0, 0, 0.4);
+	position: fixed;
+    flex-direction: column;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	/* z index will make this sit in teh front of the other specified element */
+	z-index: 1;
+	overflow: auto;
+	display: none;
+  
+}
+
+#modal-textbox {
+	overflow: auto;
+    background-color: white;
+    letter-spacing: 1px;
+    word-spacing: 5px;
+	height: 40%;
+	width: 60%;
+	border-radius: 2px;
+    font-family: 'ArcadeClassic', sans-serif;
+	margin: 150px auto;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+	padding: 5%;
+	line-height: 120%;
+    border-radius: 3vh;
+    background-color: #b7ede2;
+}
+
+#modal-footer {
+	text-align: right;
+}
+
+.modal-buttons, #button{
+	margin: 0 auto;
+  padding: 8px 18px;
+	background-color: rgb(74, 177, 166);
+  height: 3vh;
+	border: none;
+	outline: light turquoise;
+	border-radius: 3px;
+	color: white;
+	font-family: 'Arial';
+	cursor: pointer;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+#openModal{
+  position: fixed;
+  top: 50%;
+  left: 40%;
+  height: 10%;
+  width: 30%;
+  justify-content: space-around;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
+  font-family: 'ArcadeClassic', sans-serif;
+  font-size: 3vh;
+}
+
+.modal-buttons:hover, #button:hover {
+  cursor: pointer;
+  background: #63dfc6;
+  /* z-index: 2; */
+
+}
+
+
+
+
 
 
 @keyframes sprite-animation {
