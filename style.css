@@ -357,7 +357,7 @@ body{
 #openModal{
     position: fixed;
     top: 50%;
-    left: 40%;
+    left: 35%;
     height: 10%;
     width: 30%;
     justify-content: space-around;

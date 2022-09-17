@@ -1,110 +1,56 @@
 # Piranha Madness 
 
 ## Overview 
-
 * Fish game where you have to eat all the fish without getting eaten by a piranha. You start off in a river, then in the sea, then in the ocean where you will eventually be free! 
-
-There are gold fish and krill to be eaten 
-
-You move to the next location after all the fish are eaten 
-
+* There are gold fish, red-snappers and krill to be eaten 
+* You move to the next location after all the fish are eaten and you don't die 
 * The story will continues until you get to the sea. You will be free once you get there 
 
- 
-
- 
-
-## Attributes 
-
-* Each Piranha fish has speed, and hull, and damage points 
-
-* This will also be the same for your fish 
-
- 
-
-## At the end of each level 
-
-* You will fight a boss 
-
- 
- 
 ## Title page 
-
-* Have a name title with a background 
-
-Get Text title and, maybe 3d? And some animations 
-
-Bounce up and down 
-
-Get a background image of fish 
-
-Test images 
-
-Test bubbles and a sea bed 
-
- 
-
-* A modal underneath  
-
-A carousel contained within this 
-
-Pick from 3 fish 
-
-Enter name field underneath this 
-
- 
-
- 
+* The piranha madness title with an animation is displayed on load
+* The start game button is also displayed on load
+  
+## Game Description Modal
+* Once game start is clicked, 
+* The start game button is also displayed on load
 
 ## Game page 
-
-* Stat bar at the top 
-
-Styled with transparency 
-
-Cool styling 
-
-* Dom input text bar at the bottom 
-
-Cool and clear styling 
-
-Maybe dark gray transparent with white gaming text 
-
-* Background 
-
-Bubbles animation 
-
-Fish moving different directions 
-
+* A stat bar at the bottom of the page will show the current level, health, number of fish eaten, and the name of the chosen fish
+* The will be a live message bar at the top showing giving update messages, so keep and eye out for them!
+* Your fish will spawn at a location on the top left of the screen
+* The fish to be eaten will spawn on the right hand side of the page moving right to left and will move passed the full width of the screen. If you have not eaten a fish, it will re-appear at its original spawn and move iin the same direction again
  
+## Gameplay
+* Move around the screen using the arrow keys on your keyboard
+* You have to eat all the fish on the screen without getting killed by the piranha
+* The piranha will move in a pre-defined direction with varying speeds based on the piranha sprite
 
-## Moving to next level 
+### Attributes 
+* Each Piranha fish has speed and damage points 
+* Your player fish will have hull points and speed 
 
-* Changing between levels 
-
-Chaning the display styling feature 
-
-* A boss fight before moving to next level 
-
-One on one battle 
-
-Health bars 
-
- 
+### Moving to next level 
+* There is a boss fight between levels. You have to beat the boss before progressing to the next level
+* Each following level has an extra number of fish to be eaten. Level one is 10, level 2 is 15, and level 3 is 20
+* After you have finished the third level, a final modal will pop up with an ending storyline
 
 ## Animations  
+Keyframes animations for: 
+* The linear movements of the food fish
+* The movements of the piranhas
+* The movement of the title up and down
+* Possible bubble animation if theres time
+* Roatation animation of the when it gets hit by a piranha
 
-* Background bubble animations 
+## Fonts
+The following fonts were used throughout for consistency:
+* Fonts/back-to-1982.regular.ttf - 1982
+* RFonts/AGENTORANGE.TTF - agentorange
 
-* Move across the screen with input keys 
+## JavaScript Functions
+* For detecting a clash with fish food or a piranha, getBoundingClient was used. It was set to detect a clash for all directions
+* A template literal was used to render all the spawned fish for each level. Each individual fish div is added into the inner HTML of the parent div for all fish.
 
-Optional to  move dynamically 
-
-* Die or eat on contact with another fish 
-
-Eating will bring your health back up 
-
-Option to have fish with different damage power 
 
 ## Wireframe Images
 
