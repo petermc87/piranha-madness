@@ -39,7 +39,7 @@ const statContainer = document.querySelector('.stat-container');
 const messageBar = document.querySelector('.message-panel');
 const liveMessage = document.querySelector('.live-message')
 
-
+//comment
 // ---------------------------------//
 // -------------CLASSES-------------//
 // ---------------------------------//
