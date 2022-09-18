@@ -2,10 +2,12 @@
 // -------- GLOBAL VARIABLES -------//
 // ---------------------------------//
 
-let move = 20;
+let move = null;
 let fishEaten = 0;
 let currentLevel = 0;
-
+let newPlayerFish = null;
+// let newPiranhaFishOne = null;
+// let newPiranhaFishTwo = null;
 // ---------------------------------//
 // -----------CACHED DOMS-----------//
 // ---------------------------------//
@@ -13,18 +15,22 @@ let currentLevel = 0;
 const allEatingFish = document.querySelector('.all-sprites')
 //player sprite
 const playerSprite = document.querySelector('.player-sprite')
-// const playerBody = document.querySelector('.player-sprite > img')
-// const playerMouth = document.querySelector('.mouth-contact')
 
-// console.log(playerBody)
-// console.log(playerMouth)
 //piranha
 const piranhaEl = document.querySelector('.piranha-sprite')
-const piranhaOne = document.getElementById('pir-one')
+const piranhaOne = document.getElementById('first-piranha')
 const pirahnhaContact = document.querySelector('.piranha-contact')
+const piranhaTwo = document.getElementById('second-piranha')
+const piranhaOneContact = document.getElementById('pir-one-contact')
+const piranhaTwoContact = document.getElementById('pir-two-contact')
+
+
 
 //title screen
 const titleScreen = document.querySelector('.title')
+
+//background images
+const bottomImage = document.querySelector('.bottom-image')
 
 //modal
 const gameStartButton = document.querySelector('#openModal');
@@ -41,7 +47,6 @@ const statContainer = document.querySelector('.stat-container');
 const messageBar = document.querySelector('.message-panel');
 const liveMessage = document.querySelector('.live-message');
 const playerSelection = document.getElementById('selection');
-// console.log(playerSelection)
 
 //fish selection containers
 const salmonSelection = document.getElementById('silly-salmon');
@@ -72,6 +77,9 @@ class Piranha {
         this.hitpoints = hitpoints;
         this.speed = speed;
     }
+    generatePiranha(){
+        
+    }
 }
 
 class playerFish {
@@ -81,7 +89,6 @@ class playerFish {
         this.speed = speed;
     }
     hullDamage(){
-        // hullUpdate.innerHTML = this.hull;
         return this.hull - newPiranha.hitpoints;
     }
 }
@@ -93,7 +100,7 @@ class playerFish {
 const piranhaKillers = [
     new Piranha('Slick Rick', 2, 7),
     new Piranha('Billy Bully', 4, 8),
-    new Piranha('Stabby Gabby', 1.5, 4)
+    // new Piranha('Stabby Gabby', 1.5, 4)
 ]
 
 const fishPlayers = [
@@ -109,20 +116,59 @@ const levelParameter = [
 ]
 
 
-//instantiating the class with a random Piranha
-const newPiranha = piranhaKillers[Math.floor(Math.random() * piranhaKillers.length)]
-console.log(newPiranha.hitpoints)
 
-//instantiationg the player fish class
-const newPlayerFish = (fishPlayers[0])
+//instantiating the class with a random Piranha
+// const newPiranhaFishOne = piranhaKillers[0]
+// const newPiranhaFishTwo = piranhaKillers[1]
+
+const newPiranhaFishOne = piranhaKillers[0]
+const newPiranhaFishTwo = piranhaKillers[1]
+
+// console.log(newPiranhaFishOne.name)
 
 // ---------------------------------//
 // ------------FUNCTIONS ----------//
 // ---------------------------------//
 
+//updating the floor image
+const bottomImageUpdate = (image) => {
+    bottomImage.innerHTML = `<img src="images/${image}" class ='back-images' alt="river-bed-image">`
+}
+
+//player fish seletion at the selection modal
+const playerFishSelection = (fishSelection) => {
+    newPlayerFish = (fishPlayers[fishSelection]);
+    playerSelection.style.display = 'none';
+    move = newPlayerFish.speed;
+
+}
+
+//renders the piranhas spped
+const piranhaRender = () =>{
+    //if statement for each piranha (differnt move direction)
+    if (currentLevel == 0){
+        //ADD TO CLASS AS A METHOD
+        piranhaOne.style = `
+        animation: piranha-one ${newPiranhaFishOne.speed}s ease-in-out infinite;
+        display: block`
+    }
+    else if (currentLevel == 1){
+        //ADD TO CLASS AS A METHOD
+        piranhaOne.style.display = 'none';
+        // newPiranhaFishOne = (piranhaKillers[currentLevel]);
+        piranhaTwo.style = `
+        animation: piranha-two ${newPiranhaFishOne.speed}s ease-in-out infinite;
+        display: block`
+    }
+    else if (currentLevel == 2){
+        //ADD TO CLASS AS A METHOD
+        piranhaOne.style.display = 'block';
+    }
+}
+
 //message bar update
 const messageUpdate = (thisMessage) => {
-    liveMessage.innerHTML = thisMessage;
+    liveMessage.innerHTML = `<h3>${thisMessage}</h3>`;
 }
 
 //selecting a player
@@ -136,9 +182,14 @@ const selectPlayer = () => {
     statContainer.style.display = 'block';
     messageBar.style.display = 'block';
     messageUpdate('THE RIVER OF DESTINY...');
+    bottomImageUpdate('riverbed.png')
     fishSpawn(currentLevel)
-    piranhaMoveRender()
+    // piranhaRender()
+    // piranhaOne.style.display = 'block'
+    console.log(piranhaOne)
 }
+
+
 //fish spawning
 const fishSpawn = (currentLevel) => {
     for (i = 0; i < levelParameter[1][currentLevel]; i++){
@@ -148,13 +199,6 @@ const fishSpawn = (currentLevel) => {
         let randomTime = randomSelector(2, levelParameter[2]);
         fishMoveRender(randomFish, randomTime)
     }
-}
-
-//renders the piranhas spped
-const piranhaMoveRender = () =>{
-    //if statement for each piranha (differnt move direction)
-    piranhaEl.style = `
-    animation: piranha-two ${newPiranha.speed}s ease-in-out infinite;`
 }
 
 //opening the main modal window
@@ -171,7 +215,6 @@ const nextWindow = () => {
 }
 
 
-
 const nextLevel = () =>{
     if (currentLevel == 0 || currentLevel == 1){
         window.alert('LEVEL ' + (currentLevel + 1) + ' COMPLETE')
@@ -180,9 +223,16 @@ const nextLevel = () =>{
         eaten.innerHTML = fishEaten;
         thisLevel.innerHTML = (currentLevel + 1);
         fishSpawn(currentLevel)
-        piranhaMoveRender()
+        //when it changes from pos 0 (lvl 1) to pos 1 (lvl 2)
         if (currentLevel == 1){
+            piranhaRender()
+            bottomImageUpdate('Seabed.jpg')
             messageUpdate('THE SEA OF SILENCE...')
+        }
+        else {
+            piranhaRender()
+            bottomImageUpdate('oceanbed.png')
+            messageUpdate('FREEDOM OCEAN...')
         }
     }
     else{
@@ -194,6 +244,7 @@ const nextLevel = () =>{
 
 //checking if the players mouth hit a fish
 const fishCollisionCheck = (food, player) => {
+    // console.log(player)
     let foodRect = food.getBoundingClientRect();
     let playerRect = player.getBoundingClientRect(); 
     return (foodRect.right >= playerRect.left && foodRect.left <= playerRect.right) && 
@@ -275,12 +326,16 @@ const fishEatenCheck = (currentFish) => {
 
 
 const playerHealth = () => {
+    
+    if (newPlayerFish.hull > 0 && newPlayerFish.hull < 10){
+        messageUpdate('LESS THAN 10 HEALTH POINTS LEFT!');
+    }
+    
     if (newPlayerFish.hull <= 0){
         window.alert('YOU DIED. HIT RESTART');
         currentLevel = 0;
         fishEaten = 0;
-        // allEatingFish.style = `display: none;`
-        allEatingFish.innerHTML = `<div> YOU LOSE!</div>`
+        messageUpdate('YOU LOSE! DEATH BY PIRANHA 💀');
     }
 }
 
@@ -298,27 +353,29 @@ const randomSelector = (array, iterator) => {
 
 salmonSelection.addEventListener('click', () => {
     playerSprite.innerHTML += `<img src="images/salomoneymaker-removebg-preview-modified.png" alt="">`;
-    playerSelection.style.display = 'none';
-    selectPlayer()
+    playerFishSelection(1);
+    selectPlayer();
 })
 
 troutSelection.addEventListener('click', () => {
     playerSprite.innerHTML += `<img src="images/trickytrout-removebg-preview.png" alt="">`
     playerSelection.style.display = 'none';
-    selectPlayer()
+    playerFishSelection(2);
+    selectPlayer();
 
 })
 
 dogfishSelection.addEventListener('click', () => {
     playerSprite.innerHTML += `<img src="images/dogfishbossone-modified-removebg-preview.png" alt="">`
     playerSelection.style.display = 'none';
+    playerFishSelection(0);
     selectPlayer()
 })
 
 //the start game button
 gameStartButton.addEventListener('click', openModal)
 
-//moves into the 
+//moves into the next window for fish selection
 continueBtn.addEventListener('click', nextWindow)
 
 //statrting position of the player
@@ -364,14 +421,26 @@ window.addEventListener('keydown', (evt) => {
     })
     
    
-    if (fishCollisionCheck(playerBody, pirahnhaContact)){
-        playerBody.style = `animation: sprite-hit 1s linear;`
-        newPlayerFish.hull = newPlayerFish.hull - newPiranha.hitpoints;
-        hullUpdate.innerHTML = newPlayerFish.hull;
-        console.log(newPlayerFish.hull)
-        playerHealth()
+    if (fishCollisionCheck(playerBody, piranhaOneContact)){
+        if (currentLevel == 0 || currentLevel == 2){
+            playerBody.style = `animation: sprite-hit 1s linear;`
+            newPlayerFish.hull = newPlayerFish.hull - newPiranhaFishOne.hitpoints;
+            hullUpdate.innerHTML = newPlayerFish.hull;
+            console.log(newPlayerFish.hull)
+            playerHealth()
+        }
+       
     }
-
+    else if (fishCollisionCheck(playerBody, piranhaTwoContact)){
+        if (currentLevel == 1 || currentLevel == 2){
+            playerBody.style = `animation: sprite-hit 1s linear;`
+            newPlayerFish.hull = newPlayerFish.hull - newPiranhaFishTwo.hitpoints;
+            hullUpdate.innerHTML = newPlayerFish.hull;
+            console.log(newPlayerFish.hull)
+            playerHealth()
+        }
+        
+    }
 });
 
 
