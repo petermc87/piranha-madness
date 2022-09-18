@@ -13,12 +13,14 @@ let currentLevel = 0;
 const allEatingFish = document.querySelector('.all-sprites')
 //player sprite
 const playerSprite = document.querySelector('.player-sprite')
-const playerBody = document.querySelector('.player-sprite > img')
-const playerMouth = document.querySelector('.mouth-contact')
+// const playerBody = document.querySelector('.player-sprite > img')
+// const playerMouth = document.querySelector('.mouth-contact')
+
+// console.log(playerBody)
+// console.log(playerMouth)
 //piranha
 const piranhaEl = document.querySelector('.piranha-sprite')
 const piranhaOne = document.getElementById('pir-one')
-// console.log(piranhaEl)
 const pirahnhaContact = document.querySelector('.piranha-contact')
 
 //title screen
@@ -37,9 +39,29 @@ const thisLevel = document.getElementById('level');
 const thisFish = document.getElementById('name');
 const statContainer = document.querySelector('.stat-container');
 const messageBar = document.querySelector('.message-panel');
-const liveMessage = document.querySelector('.live-message')
+const liveMessage = document.querySelector('.live-message');
+const playerSelection = document.getElementById('selection');
+// console.log(playerSelection)
 
-//comment
+//fish selection containers
+const salmonSelection = document.getElementById('silly-salmon');
+const dogfishSelection = document.getElementById('dogfish-darcy');
+const troutSelection = document.getElementById('trout-magic');
+//stat boxes
+const dogfishStats = document.getElementById('dogfish-stats');
+const salmonStats = document.getElementById('salmon-stats');
+const troutStats = document.getElementById('trout-stats');
+//stat spans for each fish
+const dogfishHealth = document.getElementById('dogfish-health');
+const dogfishSpeed = document.getElementById('dogfish-speed');
+const salmonHealth = document.getElementById('salmon-health');
+const salmonSpeed = document.getElementById('salmon-speed');
+const troutHealth = document.getElementById('trout-health');
+const troutSpeed = document.getElementById('trout-speed');
+//play game button
+const playGameBtn = document.getElementById('play')
+
+
 // ---------------------------------//
 // -------------CLASSES-------------//
 // ---------------------------------//
@@ -53,9 +75,10 @@ class Piranha {
 }
 
 class playerFish {
-    constructor(name, hull){
+    constructor(name, hull, speed){
         this.name = name;
         this.hull = hull;
+        this.speed = speed;
     }
     hullDamage(){
         // hullUpdate.innerHTML = this.hull;
@@ -74,9 +97,9 @@ const piranhaKillers = [
 ]
 
 const fishPlayers = [
-    new playerFish('Dogfish Darcy', 20),
-    new playerFish('Silly Salmon', 15),
-    new playerFish('Carp Magic', 25),
+    new playerFish('Dogfish Darcy', 20, 17),
+    new playerFish('Silly Salmon', 15, 24),
+    new playerFish('Trouty Magic', 25, 12),
 ]
 
 const levelParameter = [
@@ -102,7 +125,20 @@ const messageUpdate = (thisMessage) => {
     liveMessage.innerHTML = thisMessage;
 }
 
+//selecting a player
 
+const selectPlayer = () => {
+    playerSelection.style.display = 'none';
+    playerSprite.style.display = 'block';
+    piranhaOne.style.display = 'block';
+    hullUpdate.innerHTML = newPlayerFish.hull;
+    thisFish.innerHTML = newPlayerFish.name;
+    statContainer.style.display = 'block';
+    messageBar.style.display = 'block';
+    messageUpdate('THE RIVER OF DESTINY...');
+    fishSpawn(currentLevel)
+    piranhaMoveRender()
+}
 //fish spawning
 const fishSpawn = (currentLevel) => {
     for (i = 0; i < levelParameter[1][currentLevel]; i++){
@@ -130,16 +166,8 @@ const openModal = () => {
 const nextWindow = () => {
     modal.style.display = 'none';
     allButtons.style.display = 'none';
-    playerSprite.style.display = 'block';
-    piranhaOne.style.display = 'block';
     titleScreen.style.display = 'none';
-    hullUpdate.innerHTML = newPlayerFish.hull;
-    thisFish.innerHTML = newPlayerFish.name;
-    statContainer.style.display = 'block';
-    messageBar.style.display = 'block';
-    messageUpdate('THE RIVER OF DESTINY...');
-    fishSpawn(currentLevel)
-    piranhaMoveRender()
+    playerSelection.style.display = 'block'
 }
 
 
@@ -268,6 +296,25 @@ const randomSelector = (array, iterator) => {
 // -------- EVENT LISTENERS --------//
 // ---------------------------------//
 
+salmonSelection.addEventListener('click', () => {
+    playerSprite.innerHTML += `<img src="images/salomoneymaker-removebg-preview-modified.png" alt="">`;
+    playerSelection.style.display = 'none';
+    selectPlayer()
+})
+
+troutSelection.addEventListener('click', () => {
+    playerSprite.innerHTML += `<img src="images/trickytrout-removebg-preview.png" alt="">`
+    playerSelection.style.display = 'none';
+    selectPlayer()
+
+})
+
+dogfishSelection.addEventListener('click', () => {
+    playerSprite.innerHTML += `<img src="images/dogfishbossone-modified-removebg-preview.png" alt="">`
+    playerSelection.style.display = 'none';
+    selectPlayer()
+})
+
 //the start game button
 gameStartButton.addEventListener('click', openModal)
 
@@ -305,8 +352,11 @@ window.addEventListener('keydown', (evt) => {
             playerSprite.style.top = parseInt(playerSprite.style.top) + move + 'px';
             break;
     }
-
+    
+    const playerBody = document.querySelector('.player-sprite > img')
+    const playerMouth = document.querySelector('.mouth-contact')
     const allFishEls = document.querySelectorAll('.fish')
+    
     allFishEls.forEach((thisFish)=>{
         if (fishCollisionCheck(thisFish, playerMouth)) {
             fishEatenCheck(thisFish)

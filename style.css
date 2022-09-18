@@ -261,7 +261,6 @@ body{
     width: 20%;
     top: 0;
     left: 0;
-    /* display: none; */
 }
 
 .player-sprite > img{
@@ -284,7 +283,7 @@ body{
 }
 
 /* PIRANHA */
-.piranha-sprite > img{
+.piranha-sprite > img, .fish-images > img{
     width: 100%;
     height: 100%;
 }
@@ -292,7 +291,6 @@ body{
 .piranha-sprite{
     z-index: 1;
     animation: piranha-one 5s ease-in-out infinite;
-    /* display: none; */
 }
 
 .piranha-contact{
@@ -305,7 +303,7 @@ body{
 
 
 /* ===== MODAL STYLING ===== */
-#modal {
+#modal, #selection {
 	background-color: rgba(0, 0, 0, 0.4);
 	position: fixed;
     flex-direction: column;
@@ -313,19 +311,17 @@ body{
 	left: 0;
 	height: 100%;
 	width: 100%;
-	/* z index will make this sit in teh front of the other specified element */
 	z-index: 1;
 	overflow: auto;
 	display: none;
-  
 }
 
-#modal-textbox {
+#modal-textbox, #select-fish{
 	overflow: auto;
     background-color: white;
     letter-spacing: 1px;
     word-spacing: 5px;
-	height: 40%;
+	height: 60%;
 	width: 60%;
 	border-radius: 2px;
     font-family: 'ArcadeClassic', sans-serif;
@@ -333,8 +329,8 @@ body{
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 	padding: 5%;
 	line-height: 120%;
-    border-radius: 3vh;
-    background-color: #b7ede2;
+    border-radius: 1vh;
+    background-color: #b7ede8;
 }
 
 #modal-footer {
@@ -375,7 +371,108 @@ body{
     font-family: '1982';
 }
 
-/* STAT STYLING */
+
+/* -------PLAYER SELECTION -------*/
+
+#selection{
+    display: none;
+    /* position: absolute; */
+}
+
+#select-fish{
+    position: absolute;
+    left: 15vw;
+}
+
+
+.fish-images{
+    position: absolute;
+    border: solid black;
+    height: 20vh;
+    left: 20vw;
+    width: 30vw;
+    border-radius: 1vh;
+    background-color: white;
+    font-family: 'ageorange';
+   
+}
+
+.display-stats{
+    position: absolute;
+    border-bottom: solid black;
+    border-top: solid black;
+    top: 2vh;
+    width: 10vw;
+    left: 2vw;
+    height: 14vh;
+    padding-bottom: 10px;
+
+}
+
+.display-stats > h2{
+   
+    line-height: 25px;
+    color: blue;
+}
+
+#trout-magic{
+    border-width: 0.5vh;
+    background-image: url('images/istockphoto-1152237432-612x612.jpg');
+    top: 7.3vh;
+}
+
+#dogfish-darcy{
+    top: 29vh;
+    border-width: 0.5vh;
+    background-image: url('images/istockphoto-1152237432-612x612.jpg');
+}
+
+#silly-salmon{
+    top: 51vh;
+    border-width: 0.5vh;
+    background-image: url('images/istockphoto-1152237432-612x612.jpg');
+}
+
+#dogfish-stats{
+    top: 29vh;
+    left: 3vw;
+    width: 15vw;
+    display: none;
+}
+
+#salmon-stats{
+    top: 51vh;
+    left: 3vw;
+    width: 15vw;
+    display: none;
+}
+
+#trout-stats{
+    top: 7.3vh;
+    left: 3vw;
+    width: 15vw;
+    display: none;
+}
+
+#text{
+    height: 3.5vh;
+    position: absolute;
+    border-bottom: solid blue;
+    top: 3vh;
+    left: 23vw;
+    font-family: '1982';
+    font-size: 3vh;
+    color: blue;
+}
+
+#dogfish-darcy:hover + #dogfish-stats, #silly-salmon:hover + #salmon-stats, #trout-magic:hover + #trout-stats{
+    cursor: pointer;
+    display: block;
+}
+
+
+/*--------- STAT STYLING ---------*/
+
 .stat-panel, .message-panel{
     position: fixed;
     bottom: 0px;
@@ -384,6 +481,7 @@ body{
     width: 100vw;
     height: 8vh;
     font-family: 'ageorange';
+    /* margin: 0 auto; */
   }
   
 .message-panel{
@@ -442,6 +540,7 @@ body{
 #modal-textbox > p {
     font-family: 'ageorange';
 }
+
 
 
 @keyframes sprite-animation {
