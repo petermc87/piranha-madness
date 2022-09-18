@@ -279,9 +279,14 @@ body{
    
 }
 .player-sprite{
+    /* display: block; */
     display: none;
 }
 
+.image-container{
+    /* border: solid black; */
+    height: 100%;
+}
 /* PIRANHA */
 .piranha-sprite > img, .fish-images > img{
     width: 100%;

@@ -15,6 +15,7 @@ let newPlayerFish = null;
 const allEatingFish = document.querySelector('.all-sprites')
 //player sprite
 const playerSprite = document.querySelector('.player-sprite')
+const imageContainer = document.querySelector('.image-container')
 
 //piranha
 const piranhaEl = document.querySelector('.piranha-sprite')
@@ -115,20 +116,33 @@ const levelParameter = [
     [10, 8, 3, 6, 12, 4, 5, 7, 9, 13, 14]
 ]
 
-
-
-//instantiating the class with a random Piranha
-// const newPiranhaFishOne = piranhaKillers[0]
-// const newPiranhaFishTwo = piranhaKillers[1]
-
+//instantiating two new piranhas
 const newPiranhaFishOne = piranhaKillers[0]
 const newPiranhaFishTwo = piranhaKillers[1]
 
-// console.log(newPiranhaFishOne.name)
 
 // ---------------------------------//
 // ------------FUNCTIONS ----------//
 // ---------------------------------//
+
+
+// resetting the game
+const gameReset = () => {
+   
+    playerSprite.innerHTML = `<div class="mouth-contact"></div>`
+    playerSprite.style.display = 'none';
+    piranhaEl.style.display = 'none';
+    statContainer.style.display = 'none';
+    messageBar.style.display = 'none';
+    titleScreen.style.display = 'block';
+    gameStartButton.style.display = 'block';
+    bottomImage.style.display = 'none';
+    allEatingFish.innerHTML = '';
+    piranhaTwo.style.display = 'none';
+    fishEaten = 0;
+    currentLevel = 0;
+}
+
 
 //updating the floor image
 const bottomImageUpdate = (image) => {
@@ -172,7 +186,6 @@ const messageUpdate = (thisMessage) => {
 }
 
 //selecting a player
-
 const selectPlayer = () => {
     playerSelection.style.display = 'none';
     playerSprite.style.display = 'block';
@@ -184,9 +197,6 @@ const selectPlayer = () => {
     messageUpdate('THE RIVER OF DESTINY...');
     bottomImageUpdate('riverbed.png')
     fishSpawn(currentLevel)
-    // piranhaRender()
-    // piranhaOne.style.display = 'block'
-    console.log(piranhaOne)
 }
 
 
@@ -240,6 +250,7 @@ const nextLevel = () =>{
         fishEaten = 0
     }
 }
+
 
 
 //checking if the players mouth hit a fish
@@ -336,6 +347,7 @@ const playerHealth = () => {
         currentLevel = 0;
         fishEaten = 0;
         messageUpdate('YOU LOSE! DEATH BY PIRANHA 💀');
+        gameReset();
     }
 }
 
