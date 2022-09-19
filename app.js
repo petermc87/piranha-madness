@@ -242,43 +242,45 @@ const nextWindow = () => {
     playerSelection.style.display = 'block'
 }
 
-// const nextLevelModal = document.querySelector('.next-level')
-// const levelCompleteText = document.getElementById('level-text')
-// const levelCompleteModalBox = document.getElementById('next-level-text')
 
-const nextLevel = () =>{
-    if (currentLevel == 0 || currentLevel == 1){
-        // window.alert('LEVEL ' + (currentLevel + 1) + ' COMPLETE')
+
+const nextLevel = () => {
+    //chainging from level 1 to level 0
+    if (currentLevel == 0){
+        //display level complete
         nextLevelModal.style.display = 'block';
         levelCompleteText.innerHTML = `LEVEL ${currentLevel + 1} COMPLETE. YOU ARE ONE LUCKY FISH`
-        // currentLevel += 1
-        // fishEaten = 0
-        // eaten.innerHTML = fishEaten;
-        // thisLevel.innerHTML = (currentLevel + 1);
-        // fishSpawn(currentLevel)
-        //when it changes from pos 0 (lvl 1) to pos 1 (lvl 2)
-        if (currentLevel == 1){
-            levelCompleteText.innerHTML = `LEVEL TWO COMPLETE. OMG, YOU ARE REALLY GOOD AT THIS.` 
-            piranhaRender()
-            bottomImageUpdate('Seabed.jpg')
-            messageUpdate('THE SEA OF SILENCE...')
-        }
-        else {
-            piranhaRender()
-            bottomImageUpdate('oceanbed.png')
-            messageUpdate('FREEDOM OCEAN...')
-        }
+        //reset numbers
+        currentLevel += 1;
+        fishEaten = 0;
+        eaten.innerHTML = fishEaten;
+        thisLevel.innerHTML = currentLevel + 1
+        bottomImageUpdate('Seabed.jpg')
+        messageUpdate('THE SEA OF SILENCE...')
     }
-    else{
-        // window.alert('LEVEL ' + (currentLevel + 1) + ' COMPLETE')
+    else if (currentLevel == 1){
+        //display level complete
         nextLevelModal.style.display = 'block';
-        // levelCompleteText.innerHTML = `LEVEL ${currentLevel + 1} COMPLETE`
-        levelCompleteText.innerHTML = `LEVEL ${currentLevel + 1} COMPLETE. YOU ARE FREE!!! 
+        levelCompleteText.innerHTML = `LEVEL ${currentLevel + 1} COMPLETE. OMG, YOU ARE REALLY GOOD AT THIS.` 
+        //reset
+        currentLevel += 1;
+        fishEaten = 0;
+        eaten.innerHTML = fishEaten;
+        thisLevel.innerHTML = currentLevel + 1
+        //create new level
+        bottomImageUpdate('oceanbed.png')
+        messageUpdate('FREEDOM OCEAN...')
+    }
+    else {
+        currentLevel += 1;
+        nextLevelModal.style.display = 'block';
+        levelCompleteText.innerHTML = `LEVEL ${currentLevel} COMPLETE. YOU ARE FREE!!!
         I COMMEND YOU ${newPlayerFish.name} ON YOUR EFFORTS. HURRY, MORE PIRANHAA ARE COMING, YOU NEED TO SWIM TO SAFETY NOW!`
-        // fishEaten = 0
-
+        restartText.innerHTML = 'RESTART'
+        fishEaten = 0
     }
 }
+
 
 
 
@@ -296,39 +298,39 @@ const fishCollisionCheck = (food, player) => {
 const fishMoveRender = (fish, moveTime) => {
 // console.log(moveTime)
 
-const randomHeight = fishRandomHeight()
-// console.log(randomHeight)
-if (fish === 'gold'){
-    currentFish = allEatingFish.innerHTML +=` <div class="fish" id="gold-fish" 
-        style= "
-        left: 110vw; top: ${randomHeight}vh;
-        animation: fishmove ${moveTime}s linear infinite;
-        ">
-        <div class="fin"></div>
-        <div class="mouth"></div>
-        <div class="eye">
-            <div class="m"></div>
-        </div>
-        <div class="g"id="gold-gill"></div>
-        <div class="t1"id="gold-gill"></div>
-        <div class="t2"id="gold-gill"></div>
-        </div>`
+    const randomHeight = fishRandomHeight()
+    // console.log(randomHeight)
+    if (fish === 'gold'){
+        currentFish = allEatingFish.innerHTML +=` <div class="fish" id="gold-fish" 
+            style= "
+            left: 110vw; top: ${randomHeight}vh;
+            animation: fishmove ${moveTime}s linear infinite;
+            ">
+            <div class="fin"></div>
+            <div class="mouth"></div>
+            <div class="eye">
+                <div class="m"></div>
+            </div>
+            <div class="g"id="gold-gill"></div>
+            <div class="t1"id="gold-gill"></div>
+            <div class="t2"id="gold-gill"></div>
+            </div>`
     }
 
-else {
-    currentFish = allEatingFish.innerHTML +=` <div class="fish" id="${fish}-fish" 
-        style= 
-        "left: 60vw; top: ${randomHeight}vh;
-        animation: fishmove ${moveTime}s linear infinite;">
-        <div class="fin" id="${fish}-fin"></div>
-        <div class="mouth"></div>
-        <div class="eye">
-            <div class="m"></div>
-        </div>
-        <div class="g" id="${fish}-gill"></div>
-        <div class="t1" id="${fish}-tail"></div>
-        <div class="t2" id="${fish}-tail"></div>
-        </div>`
+    else {
+        currentFish = allEatingFish.innerHTML +=` <div class="fish" id="${fish}-fish" 
+            style= 
+            "left: 60vw; top: ${randomHeight}vh;
+            animation: fishmove ${moveTime}s linear infinite;">
+            <div class="fin" id="${fish}-fin"></div>
+            <div class="mouth"></div>
+            <div class="eye">
+                <div class="m"></div>
+            </div>
+            <div class="g" id="${fish}-gill"></div>
+            <div class="t1" id="${fish}-tail"></div>
+            <div class="t2" id="${fish}-tail"></div>
+            </div>`
     }
 }
    
@@ -372,14 +374,12 @@ const playerHealth = () => {
     }
     
     if (newPlayerFish.hull <= 0){
-        // window.alert('YOU DIED. HIT RESTART');
         currentLevel = 0;
         fishEaten = 0;
         nextLevelModal.style.display = 'block'
         messageUpdate('YOU LOSE! DEATH BY PIRANHA 💀');
         levelCompleteText.innerHTML = `YOU LOSE! DEATH BY PIRANHA 💀`
         restartText.innerHTML = 'RESTART'
-        // gameReset();
     }
 }
 
@@ -394,36 +394,23 @@ const randomSelector = (array, iterator) => {
 // -------- EVENT LISTENERS --------//
 // ---------------------------------//
 
-// const nextLevelModal = document.querySelector('.next-level')
-// const levelCompleteModalBox = document.getElementById('next-level-text')
-
 
 
 levelCompleteModalBox.addEventListener('click', () => {
     nextLevelModal.style.display = 'none';
-    if (currentLevel == 0 || currentLevel == 1){
-        // levelCompleteText.innerHTML = `LEVEL ${currentLevel + 1} COMPLETE`
-        currentLevel += 1
-        fishEaten = 0
-        eaten.innerHTML = fishEaten;
-        thisLevel.innerHTML = (currentLevel + 1);
+    if (currentLevel == 1 || currentLevel == 2){
         fishSpawn(currentLevel)
-            if (currentLevel == 1){
-     
-        }
-        else {
-            // piranhaRender()
-            // bottomImageUpdate('oceanbed.png')
-            // messageUpdate('FREEDOM OCEAN...')
-        }
+        piranhaRender()
     }
-    else {
-        // levelCompleteText.innerHTML = `LEVEL ${currentLevel + 1} COMPLETE`
-        fishEaten = 0
-    }
-    if (newPlayerFish.hull <=0){
+    else if (currentLevel == 3){
+        console.log('restting after final level')
         gameReset()
     }
+ 
+    if (newPlayerFish.hull <= 0) {
+        gameReset()
+    }
+
 })
 
 
