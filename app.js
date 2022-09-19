@@ -25,19 +25,23 @@ const piranhaTwo = document.getElementById('second-piranha')
 const piranhaOneContact = document.getElementById('pir-one-contact')
 const piranhaTwoContact = document.getElementById('pir-two-contact')
 
-
-
 //title screen
 const titleScreen = document.querySelector('.title')
 
 //background images
 const bottomImage = document.querySelector('.bottom-image')
 
-//modal
+//starting modals
 const gameStartButton = document.querySelector('#openModal');
 const modal = document.querySelector('#modal');
 const continueBtn = document.querySelector('#continue');
 const allButtons = document.querySelector('.modal-buttons')
+
+//next level & dying modal
+const nextLevelModal = document.querySelector('.next-level')
+const levelCompleteText = document.getElementById('level-text')
+const levelCompleteModalBox = document.getElementById('next-level-text')
+const restartText = document.getElementById('restart')
 
 //stats
 const hullUpdate = document.getElementById('hull');
@@ -120,15 +124,25 @@ const levelParameter = [
 const newPiranhaFishOne = piranhaKillers[0]
 const newPiranhaFishTwo = piranhaKillers[1]
 
+fishPlayers.forEach((aFish)=>{
+    console.log(aFish.hull)
+})
+
 
 // ---------------------------------//
 // ------------FUNCTIONS ----------//
 // ---------------------------------//
 
+//generate random height for the fish to spawn
+// const levelCompleteText = document.getElementById('level-text')
+
+
+const fishRandomHeight = () => {
+    return Math.random() * 80;
+}
 
 // resetting the game
 const gameReset = () => {
-   
     playerSprite.innerHTML = `<div class="mouth-contact"></div>`
     playerSprite.style.display = 'none';
     piranhaEl.style.display = 'none';
@@ -139,6 +153,9 @@ const gameReset = () => {
     bottomImage.style.display = 'none';
     allEatingFish.innerHTML = '';
     piranhaTwo.style.display = 'none';
+    fishPlayers[0].hull = '20';
+    fishPlayers[1].hull = '15';
+    fishPlayers[2].hull = '25';
     fishEaten = 0;
     currentLevel = 0;
 }
@@ -154,24 +171,39 @@ const playerFishSelection = (fishSelection) => {
     newPlayerFish = (fishPlayers[fishSelection]);
     playerSelection.style.display = 'none';
     move = newPlayerFish.speed;
-
+    console.log(newPlayerFish.hull)
 }
+
+
+//selecting a player
+const selectPlayer = () => {
+    playerSelection.style.display = 'none';
+    playerSprite.style.display = 'block';
+    piranhaOne.style.display = 'block';
+    hullUpdate.innerHTML = newPlayerFish.hull;
+    thisFish.innerHTML = newPlayerFish.name;
+    thisLevel.innerHTML = '1';
+    eaten.innerHTML = '0';
+    statContainer.style.display = 'block';
+    messageBar.style.display = 'block';
+    messageUpdate('THE RIVER OF DESTINY...');
+    bottomImageUpdate('riverbed.png')
+    fishSpawn(currentLevel)
+}
+
 
 //renders the piranhas spped
 const piranhaRender = () =>{
-    //if statement for each piranha (differnt move direction)
+ 
     if (currentLevel == 0){
-        //ADD TO CLASS AS A METHOD
         piranhaOne.style = `
         animation: piranha-one ${newPiranhaFishOne.speed}s ease-in-out infinite;
         display: block`
     }
     else if (currentLevel == 1){
-        //ADD TO CLASS AS A METHOD
         piranhaOne.style.display = 'none';
-        // newPiranhaFishOne = (piranhaKillers[currentLevel]);
         piranhaTwo.style = `
-        animation: piranha-two ${newPiranhaFishOne.speed}s ease-in-out infinite;
+        animation: piranha-two ${newPiranhaFishTwo.speed}s ease-in-out infinite;
         display: block`
     }
     else if (currentLevel == 2){
@@ -183,20 +215,6 @@ const piranhaRender = () =>{
 //message bar update
 const messageUpdate = (thisMessage) => {
     liveMessage.innerHTML = `<h3>${thisMessage}</h3>`;
-}
-
-//selecting a player
-const selectPlayer = () => {
-    playerSelection.style.display = 'none';
-    playerSprite.style.display = 'block';
-    piranhaOne.style.display = 'block';
-    hullUpdate.innerHTML = newPlayerFish.hull;
-    thisFish.innerHTML = newPlayerFish.name;
-    statContainer.style.display = 'block';
-    messageBar.style.display = 'block';
-    messageUpdate('THE RIVER OF DESTINY...');
-    bottomImageUpdate('riverbed.png')
-    fishSpawn(currentLevel)
 }
 
 
@@ -224,17 +242,23 @@ const nextWindow = () => {
     playerSelection.style.display = 'block'
 }
 
+// const nextLevelModal = document.querySelector('.next-level')
+// const levelCompleteText = document.getElementById('level-text')
+// const levelCompleteModalBox = document.getElementById('next-level-text')
 
 const nextLevel = () =>{
     if (currentLevel == 0 || currentLevel == 1){
-        window.alert('LEVEL ' + (currentLevel + 1) + ' COMPLETE')
-        currentLevel += 1
-        fishEaten = 0
-        eaten.innerHTML = fishEaten;
-        thisLevel.innerHTML = (currentLevel + 1);
-        fishSpawn(currentLevel)
+        // window.alert('LEVEL ' + (currentLevel + 1) + ' COMPLETE')
+        nextLevelModal.style.display = 'block';
+        levelCompleteText.innerHTML = `LEVEL ${currentLevel + 1} COMPLETE. YOU ARE ONE LUCKY FISH`
+        // currentLevel += 1
+        // fishEaten = 0
+        // eaten.innerHTML = fishEaten;
+        // thisLevel.innerHTML = (currentLevel + 1);
+        // fishSpawn(currentLevel)
         //when it changes from pos 0 (lvl 1) to pos 1 (lvl 2)
         if (currentLevel == 1){
+            levelCompleteText.innerHTML = `LEVEL TWO COMPLETE. OMG, YOU ARE REALLY GOOD AT THIS.` 
             piranhaRender()
             bottomImageUpdate('Seabed.jpg')
             messageUpdate('THE SEA OF SILENCE...')
@@ -246,8 +270,13 @@ const nextLevel = () =>{
         }
     }
     else{
-        window.alert('LEVEL ' + (currentLevel + 1) + ' COMPLETE')
-        fishEaten = 0
+        // window.alert('LEVEL ' + (currentLevel + 1) + ' COMPLETE')
+        nextLevelModal.style.display = 'block';
+        // levelCompleteText.innerHTML = `LEVEL ${currentLevel + 1} COMPLETE`
+        levelCompleteText.innerHTML = `LEVEL ${currentLevel + 1} COMPLETE. YOU ARE FREE!!! 
+        I COMMEND YOU ${newPlayerFish.name} ON YOUR EFFORTS. HURRY, MORE PIRANHAA ARE COMING, YOU NEED TO SWIM TO SAFETY NOW!`
+        // fishEaten = 0
+
     }
 }
 
@@ -265,10 +294,10 @@ const fishCollisionCheck = (food, player) => {
 
 //render fish move animation, spawn in random y pos
 const fishMoveRender = (fish, moveTime) => {
-console.log(moveTime)
+// console.log(moveTime)
 
-const randomHeight = -4
-
+const randomHeight = fishRandomHeight()
+// console.log(randomHeight)
 if (fish === 'gold'){
     currentFish = allEatingFish.innerHTML +=` <div class="fish" id="gold-fish" 
         style= "
@@ -343,14 +372,16 @@ const playerHealth = () => {
     }
     
     if (newPlayerFish.hull <= 0){
-        window.alert('YOU DIED. HIT RESTART');
+        // window.alert('YOU DIED. HIT RESTART');
         currentLevel = 0;
         fishEaten = 0;
+        nextLevelModal.style.display = 'block'
         messageUpdate('YOU LOSE! DEATH BY PIRANHA 💀');
-        gameReset();
+        levelCompleteText.innerHTML = `YOU LOSE! DEATH BY PIRANHA 💀`
+        restartText.innerHTML = 'RESTART'
+        // gameReset();
     }
 }
-
 
 
 //random selector
@@ -362,6 +393,39 @@ const randomSelector = (array, iterator) => {
 // ---------------------------------//
 // -------- EVENT LISTENERS --------//
 // ---------------------------------//
+
+// const nextLevelModal = document.querySelector('.next-level')
+// const levelCompleteModalBox = document.getElementById('next-level-text')
+
+
+
+levelCompleteModalBox.addEventListener('click', () => {
+    nextLevelModal.style.display = 'none';
+    if (currentLevel == 0 || currentLevel == 1){
+        // levelCompleteText.innerHTML = `LEVEL ${currentLevel + 1} COMPLETE`
+        currentLevel += 1
+        fishEaten = 0
+        eaten.innerHTML = fishEaten;
+        thisLevel.innerHTML = (currentLevel + 1);
+        fishSpawn(currentLevel)
+            if (currentLevel == 1){
+     
+        }
+        else {
+            // piranhaRender()
+            // bottomImageUpdate('oceanbed.png')
+            // messageUpdate('FREEDOM OCEAN...')
+        }
+    }
+    else {
+        // levelCompleteText.innerHTML = `LEVEL ${currentLevel + 1} COMPLETE`
+        fishEaten = 0
+    }
+    if (newPlayerFish.hull <=0){
+        gameReset()
+    }
+})
+
 
 salmonSelection.addEventListener('click', () => {
     playerSprite.innerHTML += `<img src="images/salomoneymaker-removebg-preview-modified.png" alt="">`;

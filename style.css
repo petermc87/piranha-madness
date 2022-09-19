@@ -9,12 +9,9 @@
   }
 
 body{
-    /* position: relative; */
     background: radial-gradient(circle, white, turquoise);
     margin: 0 auto;
     overflow: hidden;
-    /* background-color: red; */
-    /* pointer-events:none; */
 }
 
 .title{
@@ -27,7 +24,6 @@ body{
     top: 1%;
     height: 45vh;
     z-index: 1;
-    /* background-color: rebeccapurple; */
 }
 
 .title-text{
@@ -71,15 +67,14 @@ body{
     border: solid red;
     height: 90vh;
     z-index: -1;
-    /* pointer-events:none; */
 }
+
 .fish{
     position: absolute;
     width: 60px;
     height: 33px;
     background: radial-gradient(circle, #ffde4a, #fcac0f);
     border-radius: 50%;
-    /* position: relative; */
     margin: 50px auto;
     left: 50vw;
 }
@@ -186,9 +181,7 @@ body{
 
 #gold-fish{
     animation-delay: 2s;
-    /* animation: fishmove 11s linear infinite; */
 }
-
 
 
 /* RED SNAPPER */
@@ -200,7 +193,6 @@ body{
     position: relative;
     margin: 50px auto;
     animation-delay: 1s;
-    /* animation: fishmove 8s linear infinite; */
 }
 
 #red-fin{
@@ -279,12 +271,10 @@ body{
    
 }
 .player-sprite{
-    /* display: block; */
     display: none;
 }
 
 .image-container{
-    /* border: solid black; */
     height: 100%;
 }
 /* PIRANHA */
@@ -295,7 +285,6 @@ body{
 
 .piranha-sprite{
     z-index: 1;
-    /* animation: piranha-one 5s ease-in-out infinite; */
 }
 
 .piranha-contact{
@@ -329,7 +318,7 @@ body{
 
 
 /* ===== MODAL STYLING ===== */
-#modal, #selection {
+#modal, #selection, .next-level {
 	background-color: rgba(0, 0, 0, 0.4);
 	position: fixed;
     flex-direction: column;
@@ -337,12 +326,13 @@ body{
 	left: 0;
 	height: 100%;
 	width: 100%;
-	z-index: 1;
+	z-index: 2;
 	overflow: auto;
 	display: none;
+   
 }
 
-#modal-textbox, #select-fish{
+#modal-textbox, #select-fish, #next-level-text{
 	overflow: auto;
     background-color: white;
     letter-spacing: 1px;
@@ -357,6 +347,7 @@ body{
 	line-height: 120%;
     border-radius: 1vh;
     background-color: #b7ede8;
+    animation: 2s fade-in-up ease-out;
 }
 
 #modal-footer {
@@ -384,7 +375,6 @@ body{
     width: 30%;
     justify-content: space-around;
     box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
-    /* font-family: 'ArcadeClassic', sans-serif; */
     font-size: 3vh;
 }
 
@@ -396,6 +386,35 @@ body{
 #button{
     font-family: '1982';
 }
+
+.next-level{
+    display: none;
+}
+
+#next-level-text{
+    width: 30vw;
+    height: 30vh;
+    color:aliceblue;
+    /* left: 1vw; */
+    font-family: '1982';
+    background-image: url('images/istockphoto-1152237432-612x612.jpg');
+}
+
+#next-level-text:hover {
+    opacity: 0.91;
+    background-color: blue;
+    cursor: pointer;
+}
+
+#next-level-text > h3 {
+    position: relative;
+    animation-delay: 3s;
+    animation: 4s fade-in-up ease-out;
+    text-align: center;
+    line-height: 100px;
+}
+
+
 
 
 /* -------PLAYER SELECTION -------*/
@@ -435,7 +454,6 @@ body{
 }
 
 .display-stats > h2{
-   
     line-height: 25px;
     color: blue;
 }
@@ -493,6 +511,7 @@ body{
 #dogfish-darcy:hover + #dogfish-stats, #silly-salmon:hover + #salmon-stats, #trout-magic:hover + #trout-stats{
     cursor: pointer;
     display: block;
+    animation: 1s fade-in-up ease-out;
 }
 
 
@@ -669,10 +688,7 @@ body{
 
 
 /* lineup class and keyframes */
-/* .lineUp {
-    animation: 2s anim-lineUp ease-out infinite;
-  }
-  @keyframes anim-lineUp {
+  @keyframes fade-in-up {
     0% {
       opacity: 0;
       transform: translateY(80%);
@@ -688,7 +704,7 @@ body{
       opacity: 1;
       transform: translateY(0%);
     }
-  } */
+  }
 
 
 
