@@ -46,14 +46,16 @@ The following fonts were used throughout for consistency:
 * Fonts/back-to-1982.regular.ttf - 1982
 * RFonts/AGENTORANGE.TTF - agentorange
 
-## JavaScript Functions
-* For detecting a clash with fish food or a piranha, getBoundingClient was used. It was set to detect a clash for all directions
-* A template literal was used to render all the spawned fish for each level. Each individual fish div is added into the inner HTML of the parent div for all fish.
-
 ## Audio
 * Intro music, in game music and ending music
 * Sound affects for when you progress to the next level, you get hit, you eat a fish and also when you die
 
+## Technologies Used
+* JavaScript, HTML and CSS
+
+## JavaScript Functions
+* For detecting a clash with fish food or a piranha, getBoundingClient was used. It was set to detect a clash for all directions
+* A template literal was used to render all the spawned fish for each level. Each individual fish div is added into the inner HTML of the parent div for all fish.
 
 ## Wireframe Images
 * Wireframe for title page

@@ -467,24 +467,26 @@ body{
   #arrowup{
     position: relative;
     bottom: 3px;
+    /* animation: top-key linear 0.5s; */
+    animation-delay: 1s;
   }
   
   #arrowleft{
     position: relative;
     right: 83px;
-    animation-delay: 1s;
+    animation-delay: 2s;
     
   }
   #arrowdown{
     position: relative;
     bottom: 70px;
-    animation-delay: 2s;
+    animation-delay: 3s;
   }
   #arrowright{
     position: relative;
     bottom: 140px;
     left: 83px;
-    animation-delay: 3s;
+    animation-delay: 4s;
   }
   
 
