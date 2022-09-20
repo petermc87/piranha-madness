@@ -442,6 +442,51 @@ body{
     color: rgb(206, 205, 205);
 }
 
+/* arrow key styling */
+.arrows{
+    top: 100px;
+    height: 150px;
+}
+
+.arrow{
+    width: 30px;
+    height: 30px;
+    border: none;
+    padding: 21px 25px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 40px;
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 15px #999;
+    animation: top-key linear 0.5s;
+    background-image: linear-gradient(to right, black , gray, black);
+    
+  }
+  
+  #arrowup{
+    position: relative;
+    bottom: 3px;
+  }
+  
+  #arrowleft{
+    position: relative;
+    right: 83px;
+    animation-delay: 1s;
+    
+  }
+  #arrowdown{
+    position: relative;
+    bottom: 70px;
+    animation-delay: 2s;
+  }
+  #arrowright{
+    position: relative;
+    bottom: 140px;
+    left: 83px;
+    animation-delay: 3s;
+  }
+  
 
 /* -------PLAYER SELECTION -------*/
 
@@ -457,6 +502,7 @@ body{
 
 .fish-images{
     position: absolute;
+    border: solid black;
     height: 20vh;
     left: 20vw;
     width: 30vw;
@@ -618,6 +664,17 @@ body{
     font-family: 'ageorange';
 }
 
+
+  
+@keyframes top-key{
+    0%{
+      box-shadow: 0 15px #999;
+    }
+    100%{
+      box-shadow: 0 10px #666;
+      transform: translateY(2px);
+    }
+  }
 
 
 @keyframes sprite-animation {
