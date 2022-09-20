@@ -30,16 +30,15 @@
 * Your player fish will have hull points and speed 
 
 ### Moving to next level 
-* There is a boss fight between levels. You have to beat the boss before progressing to the next level
+* Eat up all the dish to progress to the next level
 * Each following level has an extra number of fish to be eaten. Level one is 10, level 2 is 15, and level 3 is 20
-* After you have finished the third level, a final modal will pop up with an ending storyline
+* After you have finished the third level, a final modal will pop up with a brief message
 
 ## Animations  
 Keyframes animations for: 
 * The linear movements of the food fish
 * The movements of the piranhas
 * The movement of the title up and down
-* Possible bubble animation if theres time
 * Roatation animation of the when it gets hit by a piranha
 
 ## Fonts
@@ -51,9 +50,12 @@ The following fonts were used throughout for consistency:
 * For detecting a clash with fish food or a piranha, getBoundingClient was used. It was set to detect a clash for all directions
 * A template literal was used to render all the spawned fish for each level. Each individual fish div is added into the inner HTML of the parent div for all fish.
 
+## Audio
+* Intro music, in game music and ending music
+* Sound affects for when you progress to the next level, you get hit, you eat a fish and also when you die
+
 
 ## Wireframe Images
-
 * Wireframe for title page
 
 ![alt text](https://github.com/petermc87/project_1_piranha_madness/blob/main/images/Piranha%20Madness%20Wireframe_1.jpg)
