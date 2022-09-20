@@ -60,6 +60,13 @@ The following fonts were used throughout for consistency:
 ## Wireframe Images
 * Wireframe for title page
 
+## Bugs and Technical Challenges
+* You can move your player around the screen at the end of each level before hitting continue
+* The piranha fish also stay moving at the end of each level, meaning you could possibly end up getting hit and die even after the level is done!
+* The second piranha movement animation was an accident. It was me trying to figure out keyframes!
+* You can only eat the fish while in motion. This is a consequence of eventlistener feature for the fish contact. This could be improved by finding a way for collisions to happen outside of the event listener and inside. In the end, this was something I adopting as a feature of the game, which actually is kind of fun!
+
+
 ![alt text](https://github.com/petermc87/project_1_piranha_madness/blob/main/images/Piranha%20Madness%20Wireframe_1.jpg)
 
 * Wireframe for game page styling

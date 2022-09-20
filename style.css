@@ -467,7 +467,6 @@ body{
   #arrowup{
     position: relative;
     bottom: 3px;
-    /* animation: top-key linear 0.5s; */
     animation-delay: 1s;
   }
   
