@@ -21,19 +21,20 @@ body{
     width: 90vw;
     left: 5%;
     top: 1%;
-    height: 45vh;
+    height: 70vh;
     z-index: 1;
+
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
 }
 
 .title-text{
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 80%;
-    align-items: center;
-    text-align: center;
+    /* border: solid gray; */
+    line-height:4rem;
     animation: titleanimate 2s ease-in-out infinite;
 }
+
 
 .title-text > h1{
     font-family: '1982';
@@ -45,6 +46,7 @@ body{
 .title-text > h2{
     font-family: 'ageorange';
     color: blue;
+    line-height:2rem;
 }
 
 @keyframes titleanimate {
@@ -317,7 +319,7 @@ body{
 	height: 100%;
 	width: 100%;
 	z-index: 2;
-	overflow: auto;
+	/* overflow: auto; */
 	display: none;
    
 }
@@ -325,7 +327,7 @@ body{
 #modal-textbox, #select-fish, #next-level-text, #back{
 	overflow: auto;
     background-color: white;
-    letter-spacing: 1px;
+    /* letter-spacing: 1px; */
     word-spacing: 5px;
 	height: 60%;
 	width: 60%;
@@ -341,31 +343,56 @@ body{
 }
 
 #modal-footer {
-	text-align: right;
+	text-align: center;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+#select-fish{
+    border: solid red;
+}
+
+.stats-wrapper{
+    border: solid blue;
+}
+.selection-wrapper{
+    border: solid green;
+    /* width: 20rem; */
 }
 
 .modal-buttons, #openModal, #back{
-	margin: 0 auto;
-    padding: 8px 18px;
+	/* margin: 0 auto; */
+    /* padding: 8px 18px; */
 	background-color:  blue;
-    height: 3vh;
+    /* height: 3vh; */
 	border: none;
 	border-radius: 3px;
 	color: white;
 	font-family: '1982';
     cursor: pointer;
+    padding: 1rem;
+    line-height: 1rem;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 #openModal{
-    position: fixed;
-    top: 50%;
-    left: 35%;
-    height: 10%;
-    width: 30%;
-    justify-content: space-around;
+    /* position: fixed; */
+    /* top: 50%; */
+    /* left: 35%; */
+    /* height: 10%; */
+    /* width: 30%; */
+    /* justify-content: space-around; */
     box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
-    font-size: 3vh;
+    /* font-size: 3vh; */
+}
+
+.button-wrapper{
+    /* border: solid black; */
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    bottom: 20rem;
 }
 
 .modal-buttons:hover, #openModal:hover, #back:hover {
@@ -444,18 +471,26 @@ body{
 
 /* arrow key styling */
 .arrows{
-    top: 100px;
-    height: 150px;
+    top: 5px;
+    height: 10rem;
+    /* border: solid black; */
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+    justify-content: space-around;
+    padding-bottom: 3rem;
+    margin: 0 auto;
 }
 
 .arrow{
-    width: 30px;
-    height: 30px;
+    /* border: solid blue; */
+    width: 1rem;
+    height: 1rem;
     border: none;
     padding: 21px 25px;
     margin: 0 auto;
-    text-align: center;
-    font-size: 40px;
+    /* text-align: center; */
+    font-size: 1.5rem;
     color: white;
     border-radius: 15px;
     box-shadow: 0 15px #999;
@@ -464,27 +499,25 @@ body{
     
   }
   
+  .arrows-bottom{
+    /* border: solid gray; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-evenly;
+
+}
   #arrowup{
-    position: relative;
-    bottom: 3px;
     animation-delay: 1s;
   }
   
   #arrowleft{
-    position: relative;
-    right: 83px;
     animation-delay: 2s;
     
   }
   #arrowdown{
-    position: relative;
-    bottom: 70px;
     animation-delay: 3s;
   }
   #arrowright{
-    position: relative;
-    bottom: 140px;
-    left: 83px;
     animation-delay: 4s;
   }
   
@@ -496,12 +529,12 @@ body{
 }
 
 #select-fish{
-    position: absolute;
+    position: fixed;
     left: 15vw;
 }
 
 
-.fish-images{
+/* .fish-images{
     position: absolute;
     border: solid black;
     height: 20vh;
@@ -511,7 +544,7 @@ body{
     background-color: white;
     font-family: 'ageorange';
    
-}
+} */
 
 .display-stats{
     position: absolute;
@@ -659,6 +692,7 @@ body{
 
 #modal-textbox > h1{
     font-family: '1982';
+    line-height: 3rem;
 }
 
 #modal-textbox > p {
