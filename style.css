@@ -543,6 +543,10 @@ body{
     border: solid white;
     border-radius: 10px;
 }
+.fish-images:hover{
+    cursor: pointer;
+    opacity: 0.6;
+}
 
 #trout-magic{
     /* border-width: 0.5vh; */
