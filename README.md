@@ -121,20 +121,3 @@ The HTML added into the DOM for fish spawns from `app.js`
 * The piranha fish also stay moving at the end of each level, meaning you could possibly end up getting hit and die even after the level is done!
 * The second piranha movement animation was an accident. It was me trying to figure out keyframes!
 * You can only eat the fish while in motion. This is a consequence of eventlistener feature for the fish contact. This could be improved by finding a way for collisions to happen outside of the event listener and inside. In the end, this was something I adopting as a feature of the game, which actually is kind of fun!
-
-
-<!-- 
-* Wireframe for game page styling
-![alt text](https://github.com/petermc87/project_1_piranha_madness/blob/main/images/Piranha%20Madness%20Wireframe_2.jpg)
-
-
-* Wireframe for boss fight
-
-![alt text](https://github.com/petermc87/project_1_piranha_madness/blob/main/images/Piranha%20Madness%20Wireframe_3.jpg)
-
-* Wireframe for what happens when moving to next level
-
-![alt text](https://github.com/petermc87/project_1_piranha_madness/blob/main/images/Piranha%20Madness%20Wireframe_4.jpg)
-
-
- -->
