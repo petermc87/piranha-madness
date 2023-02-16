@@ -94,6 +94,10 @@ const backBtn = document.getElementById('back')
 
 // on screen buttons
 const onScreenButtons = document.querySelector('.game-button-wrapper')
+const upButton = document.getElementById('up')
+const leftButton = document.getElementById('left')
+const downButton = document.getElementById('down')
+const rightButton = document.getElementById('right')
 
 // ---------------------------------//
 // -------------CLASSES-------------//
@@ -472,6 +476,28 @@ window.addEventListener('load', () => {
     top: 100px;`
 })
 
+
+  // hitting on screen arrows
+  upButton.addEventListener('click', () => {
+    // console.log('click')
+    playerSprite.style.top = parseInt(playerSprite.style.top) - move + 'px'
+  })
+
+  downButton.addEventListener('click', () => {
+    playerSprite.style.top = parseInt(playerSprite.style.top) + move + 'px'
+  })
+
+  leftButton.addEventListener('click', () => {
+    playerSprite.style.left = parseInt(playerSprite.style.left) - move + 'px'
+  })
+
+  rightButton.addEventListener('click', () => {
+    playerSprite.style.left = parseInt(playerSprite.style.left) + move + 'px'
+  })
+
+
+
+
 // when you hit an arrow key
 window.addEventListener('keydown', (evt) => {
   switch (evt.key) {
@@ -491,6 +517,9 @@ window.addEventListener('keydown', (evt) => {
       playerSprite.style.top = parseInt(playerSprite.style.top) + move + 'px'
       break
   }
+
+
+
 
   const playerBody = document.querySelector('.player-sprite > img')
   const playerMouth = document.querySelector('.mouth-contact')
