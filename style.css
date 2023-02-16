@@ -1,3 +1,8 @@
+:root{
+    --fish-margin: 5rem;
+}
+
+
 @font-face {
     font-family: 'ageorange';
     src: url('Fonts/AGENTORANGE.TTF'); 
@@ -12,6 +17,10 @@ body{
     background: radial-gradient(circle, white, turquoise);
     margin: 0 auto;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* max-height: 100vh; */
 }
 
 .title{
@@ -73,7 +82,7 @@ body{
     height: 33px;
     background: radial-gradient(circle, #ffde4a, #fcac0f);
     border-radius: 50%;
-    margin: 50px auto;
+    margin: var(--fish-margin) auto;
     left: 50vw;
 }
 
@@ -189,8 +198,9 @@ body{
     background: radial-gradient(circle, #fcac0f,#ff3c00);
     border-radius: 50%;
     position: relative;
-    margin: 50px auto;
+    margin: var(--fish-margin) auto;
     animation-delay: 1s;
+    border: solid black;
 }
 
 #red-fin{
@@ -214,7 +224,11 @@ body{
     background: radial-gradient(circle, #95f6f9,#009dff);
     border-radius: 50%;
     position: relative;
-    margin: 50px auto;
+    /* margin: 50px auto;
+     */
+
+     border: solid red;
+     margin: var(--fish-margin) auto;
 }
 
 #krill-fin{
@@ -305,6 +319,13 @@ body{
 #pir-two-contact{
     left: 0;
 }
+/* 
+.game-screen-wrapper{
+    border: solid black;
+    display: flex;
+    flex-direction: column;
+     max-height: fit-content;
+}  */
 
 
 /* -------MODAL STYLING-------*/
@@ -349,6 +370,7 @@ body{
     /* border: solid red; */
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 #select-fish > div > h4{
     font-family: '1982';
@@ -483,6 +505,13 @@ body{
     margin: 0 auto;
 }
 
+#game-screen-arrows{
+    bottom: 60rem;
+    position: fixed;
+    padding: 10rem;
+    border: solid gray;
+ }
+
 .arrow{
     width: 1rem;
     height: 1rem;
@@ -518,7 +547,47 @@ body{
   #arrowright{
     animation-delay: 4s;
   }
+
+/* -------ON SCREEN ARROWS-------*/
+.game-button-wrapper{
+    display: none;
+}
+
+  @media only screen and (max-width: 1000px){
+    .game-buttons{
+        /* border: solid purple; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        bottom: 5rem;
+        width: 100%;
+      }
+      
+     .game-button{
+        height: 3rem;
+        width: 3rem;
+        margin: 0.3rem;
+        opacity: 0.4;
+    
+     }
+    
+      .bottom-buttons{
+        /* border: solid pink; */
+        display: flex;
+        justify-content: center;
+      }
+}
+
+
+@media only screen and (min-width: 1000px){
+    .game-buttons{
+        display: none;
+      }
+}
   
+  
+
 
 /* -------PLAYER SELECTION -------*/
 

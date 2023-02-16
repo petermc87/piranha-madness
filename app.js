@@ -92,6 +92,9 @@ const playGameBtn = document.getElementById('play')
 // back button
 const backBtn = document.getElementById('back')
 
+// on screen buttons
+const onScreenButtons = document.querySelector('.game-button-wrapper')
+
 // ---------------------------------//
 // -------------CLASSES-------------//
 // ---------------------------------//
@@ -183,6 +186,7 @@ const bottomImageUpdate = (image) => {
 const playerFishSelection = (fishSelection) => {
   newPlayerFish = (fishPlayers[fishSelection])
   playerSelection.style.display = 'none'
+  onScreenButtons.style.display = 'block'
   move = newPlayerFish.speed
   console.log(newPlayerFish.hull)
 }
@@ -402,7 +406,7 @@ levelCompleteModalBox.addEventListener('click', () => {
     fishSpawn(currentLevel)
     piranhaRender()
   } else if (currentLevel == 3) {
-    console.log('restting after final level')
+    // console.log('restting after final level')
     gameReset()
   }
 
@@ -463,7 +467,7 @@ backBtn.addEventListener('click', () => {
 
 // statrting position of the player
 window.addEventListener('load', () => {
-  playerSprite.style = `position: abolsute;
+  playerSprite.style = `position: absolute;
     left: 0;
     top: 100px;`
 })

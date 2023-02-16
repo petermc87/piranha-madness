@@ -1,12 +1,41 @@
 ![heading](images/title.png)
 
 # Introduction
-An arcade style game with the objective of eating all on screen fish without getting killed by a piranha. **Piranha Madness** is not like anoy other game you've played!
+An arcade style game with the objective of eating all on screen fish without getting killed by a piranha. **Piranha Madness** is not like any other game you've played!
 
 # Technologies Used 
 * JavaScript
 * CSS
 * HTML
+
+# Getting Started & how to play
+Start the game by following the link [here](https://petermc87.github.io/project_1_piranha_madness/)
+
+Click `start game` to be brought the game description modal. Click `continue` to display the player selection modal. 
+
+Select a fish from the options in the selection modal. Stats for each fish will also be displayed for each fish sprite.
+
+
+## Game page 
+* A stat bar at the bottom of the page will show the current level, health, number of fish eaten, and the name of the chosen fish.
+* There will be a live message bar at the top showing updated messages, so keep and eye out for them!
+* Your fish will spawn at a location on the top left of the screen
+* The fish to be eaten will spawn on the right hand side of the screen out of view moving right to left and will move passed the full width of the screen. If you have not eaten a fish, it will re-appear at its original spawn position and continue to move in the same direction.
+ 
+## Gameplay
+* Move around the screen using `↑` `↓` `←` `→` keys on your keyboard
+* To pass a level, you have to eat the total count of fish for that level without running out of hull points via damage from the Piranhas.
+* The piranha will move in a pre-defined direction with varying speeds based on the piranha sprite.
+
+### Attributes 
+* Each Piranha fish has speed and damage points 
+* Your player fish will have hull points and speed 
+
+### Moving to next level 
+* Eat up all the fish to progress to the next level
+* Each following level has an extra number of fish to be eaten. Level one is 10, level 2 is 15, and level 3 is 20
+* After you have finished the third level, a final modal will pop up with a brief message. When clicked, you will be brought back to the landing page
+
 
 # Wireframe Planning
 ## Landing Page
@@ -31,56 +60,28 @@ An arcade style game with the objective of eating all on screen fish without get
 ## In Game Screen
 ![desc](images/ingame.png)
 
-# Getting Started & how to play
-Start the game by following the link [here](https://petermc87.github.io/project_1_piranha_madness/)
-
-Click `start game` to be brought the game description modal. Click `continue` to display the player selection modal. 
-
-Select a fish from the 
-
-
-## Game page 
-* A stat bar at the bottom of the page will show the current level, health, number of fish eaten, and the name of the chosen fish
-* There will be a live message bar at the top showing giving update messages, so keep and eye out for them!
-* Your fish will spawn at a location on the top left of the screen
-* The fish to be eaten will spawn on the right hand side of the page moving right to left and will move passed the full width of the screen. If you have not eaten a fish, it will re-appear at its original spawn position and continue to move in the same direction
- 
-## Gameplay
-* Move around the screen using the arrow keys on your keyboard
-* You have to eat all the fish on the screen without getting killed by the piranha
-* The piranha will move in a pre-defined direction with varying speeds based on the piranha sprite
-
-### Attributes 
-* Each Piranha fish has speed and damage points 
-* Your player fish will have hull points and speed 
-
-### Moving to next level 
-* Eat up all the dish to progress to the next level
-* Each following level has an extra number of fish to be eaten. Level one is 10, level 2 is 15, and level 3 is 20
-* After you have finished the third level, a final modal will pop up with a brief message
-
 
 # How to game was built
 
 ## Animations  
 CSS Key frame animations were used for:
-* The linear movements of the food fish
-* The movements of the piranhas
-* The movement of the title up and down
-* Roatation animation of the when it gets hit by a piranha
+* Linear movements of the food fish
+* Movement of the piranhas
+* Movement of the title up and down
+* Roatational animation when the player sprite is contacted by a Piranhas
 
 ## Fonts
-The following fonts were used throughout for consistency:
+The following fonts were used throughout the application for consistency:
 * Fonts/back-to-1982.regular.ttf - 1982
 * Fonts/AGENTORANGE.TTF - agentorange
 
 ## Audio
-Audio is used in the intro section, in game and ending music.
+Audio is used at the intro section, in game and ending music.
 Additionally, there are audio affects for when you progress to the next level, when you get hit, when you eat a fish and when you die.
 
 
 ## JavaScript Functions
-For detecting a clash with fish food or a piranha, getBoundingClient was used. It was set to detect a clash for all moving directions of the players sprite. 
+For detecting a clash with fish food or a piranha, `.getBoundingClient()` method was used. It was set to detect a clash for all moving directions of the players sprite. 
 
 Below shows the `.getBoundingClient()` method used to detect a collision between the player sprite (`player`) and the fish sprite (`food`).
 
@@ -98,7 +99,7 @@ const fishCollisionCheck = (food, player) => {
 
 A template literal was used to render all the spawned fish for each level. Each individual fish div is added into the inner HTML of the parent div for all fish.
 
-The HTML added into the DOM for fish spawns from `app.js`
+The HTML added into the DOM for fish spawns from `app.js` is shown below.
 
 ```js
     currentFish = allEatingFish.innerHTML += ` <div class="fish" id="${fish}-fish" 
