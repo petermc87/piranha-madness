@@ -200,7 +200,6 @@ body{
     position: relative;
     margin: var(--fish-margin) auto;
     animation-delay: 1s;
-    border: solid black;
 }
 
 #red-fin{
@@ -224,11 +223,7 @@ body{
     background: radial-gradient(circle, #95f6f9,#009dff);
     border-radius: 50%;
     position: relative;
-    /* margin: 50px auto;
-     */
-
-     border: solid red;
-     margin: var(--fish-margin) auto;
+    margin: var(--fish-margin) auto;
 }
 
 #krill-fin{
@@ -319,14 +314,6 @@ body{
 #pir-two-contact{
     left: 0;
 }
-/* 
-.game-screen-wrapper{
-    border: solid black;
-    display: flex;
-    flex-direction: column;
-     max-height: fit-content;
-}  */
-
 
 /* -------MODAL STYLING-------*/
 
