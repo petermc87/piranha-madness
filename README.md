@@ -9,7 +9,7 @@ An arcade style game with the objective of eating all on screen fish without get
 * HTML
 
 # Getting Started & how to play
-Start the game by following the link [here](https://petermc87.github.io/project_1_piranha_madness/)
+Start the game by following the link [here](https://petermc87.github.io/piranha-madness/)
 
 Click `start game` to be brought the game description modal. Click `continue` to display the player selection modal. 
 

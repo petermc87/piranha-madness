@@ -477,8 +477,48 @@ window.addEventListener('load', () => {
 })
 
 
+
+// class ClickAndHold {
+
+//   constructor(target, callback){
+//     this.target = target
+//     this.callback = callback
+//     this.isHeld = false
+//     this.activeHoldTimeoutId = null
+
+//     "mousedown".this.target.addEventListener(type, this._onHoldStart.bind(this))
+
+//     ["mouseup", "mouseleave", "mouseout", "touchcancel", 'touchend'].forEach(type => {
+//       this.target.addEventListener(type, this._onHoldEnd.bind(this))
+//     })
+//   }
+
+//   _onHoldStart(){
+//     this.isHeld = true
+//     // preventing the the callback from being activated on multiple key hold
+//     this.activeHoldTimeoutId = setTimeout(() => {
+//         if(this.isHeld){
+//           this.callback()
+//         }
+//     }, 1000)
+//   }
+
+//   _onHoldEnd(){
+//     this.isHeld = false
+//     // when the hold ends, it will clear the active hold id and start all over again
+//     clearTimeout(this.activeHoldTimeoutId)
+//   }
+
+// }
+
+// const upButton = document.getElementById('up')
+
+// new ClickAndHold(upButton, () => {
+//   alert("click and hold")
+// })
+
   // hitting on screen arrows
-  upButton.addEventListener('click', () => {
+  upButton.addEventListener('click', (e) => {
     // console.log('click')
     playerSprite.style.top = parseInt(playerSprite.style.top) - move + 'px'
   })
@@ -491,7 +531,7 @@ window.addEventListener('load', () => {
     playerSprite.style.left = parseInt(playerSprite.style.left) - move + 'px'
   })
 
-  rightButton.addEventListener('click', () => {
+  rightButton.addEventListener('mousedown', () => {
     playerSprite.style.left = parseInt(playerSprite.style.left) + move + 'px'
   })
 
