@@ -20,7 +20,6 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    /* max-height: 100vh; */
 }
 
 .title{
