@@ -297,9 +297,6 @@ const nextLevel = () => {
     nextLevelModal.style.display = 'block'
     inGame.pause()
     ending.play()
-    // nextLevelModal.style = `
-    // background-color: white;
-    // animation fade-to-white 5s linear;`
     levelCompleteText.innerHTML = `LEVEL ${currentLevel} COMPLETE. YOU ARE FREE!!!
         I COMMEND YOU ${newPlayerFish.name} ON YOUR EFFORTS. HURRHHAAH! BUT THERE ARE 
         MORE PIRANHA COMING, YOU NEED TO SWIM TO SAFETY NOW!`
@@ -322,8 +319,8 @@ const fishMoveRender = (fish, moveTime) => {
   if (fish === 'gold') {
     currentFish = allEatingFish.innerHTML += ` <div class="fish" id="gold-fish" 
             style= "
-            left: 110vw; top: ${randomHeight}vh;
-            animation: fishmove ${moveTime}s linear infinite;
+              left: 110vw; top: ${randomHeight}vh;
+              animation: fishmove ${moveTime}s linear infinite;
             ">
             <div class="fin"></div>
             <div class="mouth"></div>
@@ -337,8 +334,9 @@ const fishMoveRender = (fish, moveTime) => {
   } else {
     currentFish = allEatingFish.innerHTML += ` <div class="fish" id="${fish}-fish" 
             style= 
-            "left: 60vw; top: ${randomHeight}vh;
-            animation: fishmove ${moveTime}s linear infinite;">
+              "left: 60vw; top: ${randomHeight}vh;
+              animation: fishmove ${moveTime}s linear infinite;"
+            >
             <div class="fin" id="${fish}-fin"></div>
             <div class="mouth"></div>
             <div class="eye">
@@ -410,7 +408,6 @@ levelCompleteModalBox.addEventListener('click', () => {
     fishSpawn(currentLevel)
     piranhaRender()
   } else if (currentLevel == 3) {
-    // console.log('restting after final level')
     gameReset()
   }
 
@@ -476,50 +473,8 @@ window.addEventListener('load', () => {
     top: 100px;`
 })
 
-
-
-// class ClickAndHold {
-
-//   constructor(target, callback){
-//     this.target = target
-//     this.callback = callback
-//     this.isHeld = false
-//     this.activeHoldTimeoutId = null
-
-//     "mousedown".this.target.addEventListener(type, this._onHoldStart.bind(this))
-
-//     ["mouseup", "mouseleave", "mouseout", "touchcancel", 'touchend'].forEach(type => {
-//       this.target.addEventListener(type, this._onHoldEnd.bind(this))
-//     })
-//   }
-
-//   _onHoldStart(){
-//     this.isHeld = true
-//     // preventing the the callback from being activated on multiple key hold
-//     this.activeHoldTimeoutId = setTimeout(() => {
-//         if(this.isHeld){
-//           this.callback()
-//         }
-//     }, 1000)
-//   }
-
-//   _onHoldEnd(){
-//     this.isHeld = false
-//     // when the hold ends, it will clear the active hold id and start all over again
-//     clearTimeout(this.activeHoldTimeoutId)
-//   }
-
-// }
-
-// const upButton = document.getElementById('up')
-
-// new ClickAndHold(upButton, () => {
-//   alert("click and hold")
-// })
-
   // hitting on screen arrows
   upButton.addEventListener('click', (e) => {
-    // console.log('click')
     playerSprite.style.top = parseInt(playerSprite.style.top) - move + 'px'
   })
 
@@ -559,8 +514,6 @@ window.addEventListener('keydown', (evt) => {
   }
 
 
-
-
   const playerBody = document.querySelector('.player-sprite > img')
   const playerMouth = document.querySelector('.mouth-contact')
   const allFishEls = document.querySelectorAll('.fish')
@@ -577,7 +530,6 @@ window.addEventListener('keydown', (evt) => {
     playerBody.style = 'animation: sprite-hit 1s linear;'
     ouch.play()
     if (currentLevel == 0 || currentLevel == 2) {
-      // playerBody.style = `animation: sprite-hit 1s linear;`
       newPlayerFish.hull = newPlayerFish.hull - newPiranhaFishOne.hitpoints
       hullUpdate.innerHTML = newPlayerFish.hull
       console.log(newPlayerFish.hull)
@@ -586,7 +538,6 @@ window.addEventListener('keydown', (evt) => {
   } else if (fishCollisionCheck(playerBody, piranhaTwoContact)) {
     ouch.play()
     if (currentLevel == 1 || currentLevel == 2) {
-      // playerBody.style = `animation: sprite-hit 1s linear;`
       newPlayerFish.hull = newPlayerFish.hull - newPiranhaFishTwo.hitpoints
       hullUpdate.innerHTML = newPlayerFish.hull
       console.log(newPlayerFish.hull)

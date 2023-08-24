@@ -354,7 +354,6 @@ body{
 }
 
 #select-fish{
-    /* border: solid red; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -370,7 +369,6 @@ body{
     border: solid blue;
 }
 .selection-wrapper{
-    /* border: solid green; */
     max-width: 50rem;
     justify-content: center;
 }
@@ -435,18 +433,10 @@ body{
 }
 
 #back{
-    /* position: absolute; */
     display: block;
-    /* left: 57vw; */
-    /* width: 7vw; */
-    /* height: 3vh; */
-    /* top: 69vh; */
-    /* margin: 0 auto; */
-    /* height: 3rem; */
     position: relative;
     width: 10rem;
     margin: 2rem;
-    /* text-align: center; */
     align-items: center;
 }
 
@@ -542,7 +532,6 @@ body{
 
   @media only screen and (max-width: 1000px){
     .game-buttons{
-        /* border: solid purple; */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -550,7 +539,6 @@ body{
         bottom: 5rem;
         width: 100%;
       }
-      
      .game-button{
         height: 3rem;
         width: 3rem;
@@ -558,9 +546,7 @@ body{
         opacity: 0.4;
     
      }
-    
       .bottom-buttons{
-        /* border: solid pink; */
         display: flex;
         justify-content: center;
       }
@@ -577,11 +563,7 @@ body{
 
 
 /* -------PLAYER SELECTION -------*/
-
-
 .display-stats{
-    /* position: absolute; */
-    /* border: solid red; */
     padding: 0.5rem;
     color: white;
     justify-content: center;
@@ -605,33 +587,23 @@ body{
 }
 
 #trout-magic{
-    /* border-width: 0.5vh; */
     background-image: url('images/istockphoto-1152237432-612x612.jpg');
-    /* top: 7.3vh; */
-    /* border: solid gray; */
     margin-bottom: 1rem;
 }
 
 #dogfish-darcy{
-    /* top: 29vh;
-    border-width: 0.5vh; */
     background-image: url('images/istockphoto-1152237432-612x612.jpg');
-    /* border: solid gray; */
     margin-bottom: 1rem;
 
 }
 
 #silly-salmon{
-    /* top: 51vh;
-    border-width: 0.5vh; */
     background-image: url('images/istockphoto-1152237432-612x612.jpg');
-    /* border: solid gray; */
     margin-bottom: 1rem;
 
 }
 
 .button-container{
-    /* border: solid black; */
     justify-content: center;
     display: flex;
 }
@@ -653,7 +625,6 @@ body{
 }
 
 /*--------- STAT STYLING ---------*/
-
 .stat-panel, .message-panel{
     position: fixed;
     bottom: 0px;
@@ -708,7 +679,6 @@ body{
 
 
 /* --------MESSAGE BAR STYLING-------- */
-
 .live-message{
     top: 1vh;
     left: 20vw;
